@@ -1,10 +1,27 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 
 function Nav() {
+   
     return (
-        <div></div>
+        <div>
+            
+            <ul className="nav-links-wrapper">
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Clients</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
     );
 }
 

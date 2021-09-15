@@ -10,7 +10,9 @@ const Home = () => {
  
   return (
    <div className="home-wrapper">
-     {/* <GuestCount></GuestCount> */}
+     <div className="flex-container-row around" id="guest-count-wrapper">
+     <GuestCount></GuestCount>
+     </div>
    </div>
   );
 };
