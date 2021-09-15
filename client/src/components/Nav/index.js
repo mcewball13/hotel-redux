@@ -2,11 +2,10 @@ import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 
-function GuestManagement () {
-
+function Nav() {
     return (
-        <div>GuestManagement Page</div>
-    )
-
+        <div></div>
+    );
 }
-export default GuestManagement;
+
+export default Nav;
