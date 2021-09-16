@@ -24,6 +24,11 @@ const typeDefs = gql`
     guests: [Guest]
   }
 
+  type Auth {
+    token: ID!
+    employee: Employees
+  }
+
   type Query{
     rooms: [Room]
     findRoomById(room_id: Int!): Room
