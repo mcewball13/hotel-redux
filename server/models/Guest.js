@@ -17,7 +17,7 @@ const GuestSchema = new Schema(
       default: new Date(),
     },
     balance: {
-      type: Schema.Types.Decimal128,
+      type: Number,
     }
   },
   {

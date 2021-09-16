@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const GuestSchema = require('./Guest');
+const Guest = require('./Guest');
 
 const RoomSchema = new Schema(
   {
@@ -12,14 +12,10 @@ const RoomSchema = new Schema(
       required: true,
     },
     is_available: {
-      type: Boolean
+      type: Boolean,
+      required: true,
     },
-    guests: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Guest'
-      }
-    ],
+    guests: [Guest.schema],
   },
   {
     toJSON: {

@@ -2,9 +2,9 @@ const { Employee, Guest, Room } = require('../models');
 
 const resolvers = {
   Query: {
-    rooms: async () => {
-      return Room.find();
-    },
+    // rooms: async () => {
+    //   return Room.find();
+    // },
     // book: async (parent, { title }) => {
     //   return Book.findOne({ title });
     // }

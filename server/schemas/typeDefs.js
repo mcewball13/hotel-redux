@@ -1,25 +1,32 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  type Employee {
+    _id: ID
+    username: String
+    email: String
+    password: String
+  }
+
   type Guest {
     _id: ID
     name: String
     party: Int
     nights: Int
     check_in: Int
-    balance: Float
+    balance: Int
   }
 
   type Room {
     _id: ID
-    title: String
-    author: String
-    pages: Int
+    room_id: Int
+    description: String
+    guests: [Guest]
   }
 
   type Query{
     rooms: [Room]
-    room(room_id: Number!): Room
+    room(room_id: Int!): Room
   }
 `;
 
