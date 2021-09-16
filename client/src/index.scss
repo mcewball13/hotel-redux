@@ -1,0 +1,52 @@
+
+* {box-sizing: border-box;}
+
+$color: #606060;
+$contrast: lighten($color, 60%);
+$transition-duration: .75s;
+
+.open-close-button {
+  display: inline-block;
+  margin: 10px 10px 0 0;
+  width: .5em;
+  height: .5em;
+  border: 0.1em solid $contrast;
+  font-size: 3em;
+  border-radius: 50%;
+  position: relative;
+  transition: $transition-duration;
+  transform: translateZ(0);
+  
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: $contrast;
+    width: 80%;
+    height: 6%;;
+    left: 10%;
+    top: 47%;
+  }
+  
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: $contrast;
+    width: 6%;
+    height: 80%;
+    left: 47%;
+    top: 10%;
+  }
+  
+  &.open {
+    background-color: $contrast;
+    &:after {
+      background-color: $color;
+    }
+    &:before {
+      background-color: $color;
+    }
+    transform: rotate(225deg);  
+  }  
+}

@@ -1,16 +1,19 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_BOOKS } from '../utils/queries';
-import BookList from '../components/BookList';
+import GuestCount from "../components/DashboardComps/GuestCount"
+import Date from "../components/DashboardComps/Date"
+import LateCheckout from "../components/DashboardComps/LateCheckout"
+import YourGuests from "../components/DashboardComps/YourGuests"
+
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_BOOKS);
-  const books = data?.books || [];
-
+ 
   return (
-    <main>
-      <div>{loading ? <div>Loading...</div> : <BookList books={books} />}</div>
-    </main>
+   <div className="home-wrapper">
+     <div className="flex-container-row around" id="guest-count-wrapper">
+     <GuestCount></GuestCount>
+     </div>
+   </div>
   );
 };
 
