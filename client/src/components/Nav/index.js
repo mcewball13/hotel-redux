@@ -6,7 +6,7 @@ function Nav() {
    
     return (
         <div>
-            
+             <h1>Hotel Redux</h1>
             <ul className="nav-links-wrapper">
                 <li>
                     <a href="#">About</a>

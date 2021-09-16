@@ -9,12 +9,11 @@ const Header = () => {
   }
   return (
     <header className={`sideHeader ${isActive ? "" : "closed"}`}>
-      <a className="open-close-btn" onClick={ToggleClass} />
-      
-        <h1>Hotel Redux</h1>
-      
+      <div className="flex-container-row end">
+      <a className={`open-close-button ${isActive ? "open" : ""}`} onClick={ToggleClass} />
+      </div>
         <nav className="text-center">
-          <Nav></Nav>
+          {isActive ? <Nav></Nav> : null}
 
         </nav>
       

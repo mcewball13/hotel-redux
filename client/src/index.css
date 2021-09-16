@@ -109,6 +109,9 @@ nav a:hover {
 .center {
   justify-content: center;
 }
+.end {
+  justify-content: flex-end;
+}
 .between {
   justify-content: space-between;
 }
@@ -127,46 +130,6 @@ width: 100%;
   background-color: var(--light);
   
 }
-/* clse btn */
-.open-close-button {
-  display: inline-block;
-  width: 2em;
-  height: 2em;
-  border: 0.1em solid #f4d6d7;
-  margin: 2em 45%;
-  font-size: 3em;
-  border-radius: 50%;
-  position: relative;
-}
-.open-close-button:before {
-  content: "";
-  display: block;
-  position: absolute;
-  background-color: #f4d6d7;
-  width: 80%;
-  height: 6%;
-  left: 10%;
-  top: 47%;
-}
-.open-close-button:after {
-  content: "";
-  display: block;
-  position: absolute;
-  background-color: #f4d6d7;
-  width: 6%;
-  height: 80%;
-  left: 47%;
-  top: 10%;
-}
-.open-close-button.open {
-  background-color: #f4d6d7;
-}
-.open-close-button.open:after {
-  background-color: #c9353b;
-}
-.open-close-button.open:before {
-  background-color: #c9353b;
-}
 
 /* The side navigation menu */
 .sideHeader {
@@ -178,10 +141,13 @@ width: 100%;
   left: 0;
   background-color: #111; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  
 }
-.closed {width: 30px}
+.closed {
+  width: 50px
+}
+
 
 /* The navigation menu links */
 .sideHeader li {

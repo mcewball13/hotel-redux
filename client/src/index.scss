@@ -3,16 +3,14 @@
 
 $color: #C9353B;
 $contrast: lighten($color, 40%);
-$transition-duration: 0.5s;
-
-html {background-color: $color;}
+$transition-duration: .75s;
 
 .open-close-button {
   display: inline-block;
-  width: 2em;
-  height: 2em;
+  margin: 10px 10px 0 0;
+  width: .5em;
+  height: .5em;
   border: 0.1em solid $contrast;
-  margin: 2em 45%;
   font-size: 3em;
   border-radius: 50%;
   position: relative;
