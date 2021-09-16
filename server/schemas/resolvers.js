@@ -8,24 +8,25 @@ const resolvers = {
       .populate('Guest.schema')
 
     },
-    room: async (parent, args, context) => {
-        if(context.room) {
-          const roomData = await Room.findOne({_id: context.room.room_id,
-          })
-          .populate('Guest.schema');
+    room: async (parent, { room_id, name}, context) => {
+      if(room_id) {
+          return Room.findOne({room_id});
+       }
 
-          return roomData;
-        }
-        throw new AuthenticationError('Not logged in');
-      },
-      guest: async () => {
-        if(context.guest) {
-          const guestData = await Guest.findOne({name: context.guest.name})
+      if(name) {
+         return Room.findOne({guests: {name}});
+       }
 
-          return guestData
-        }
-      },
+         
     },
+    guest: async () => {
+      if(context.guest) {
+        const guestData = await Guest.findOne({name: context.guest.name})
+
+        return guestData
+      }
+    },
+  },
   Mutation: {
     addUser: async () => {}
       

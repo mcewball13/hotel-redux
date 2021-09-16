@@ -38,9 +38,8 @@ const typeDefs = gql`
     guest(name: String!): Guest
     rooms: [Room]
     employee: Employee
-    findRoomById(room_id: Int!): Room
-    findRoomByGuest(guest_name: String!): Room
-    checkout(): Checkout
+    room(room_id: Int, name: String): Room
+    checkout(test: String!): Checkout
   }
 
   input checkinInput{
@@ -55,7 +54,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     checkin(input: checkinInput!): Room
-    checkout(room_id: Int!, name: String!): Room
+    
   }
 `;
 
