@@ -11,10 +11,20 @@ const RoomSchema = new Schema(
       type: String,
       required: true,
     },
-    is_avialable: {
+    is_available: {
       type: Boolean
     },
-    // guest: [GuestSchema]
+    guests: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Guest'
+      }
+    ],
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    }
   }
 );
 

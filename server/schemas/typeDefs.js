@@ -19,6 +19,7 @@ const typeDefs = gql`
 
   type Query{
     rooms: [Room]
+    room(room_id: Number!): Room
   }
 `;
 
