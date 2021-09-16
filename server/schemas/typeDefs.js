@@ -24,10 +24,38 @@ const typeDefs = gql`
     guests: [Guest]
   }
 
+  type Auth {
+    token: ID!
+    employee: Employee
+  }
+
+  type Checkout {
+    session: ID
+  }
+
   type Query{
+    guests: [Guest]
+    guest(name: String!): Guest
     rooms: [Room]
+    employee: Employee
     findRoomById(room_id: Int!): Room
-    findRoomByGuest(guest_Name: String!): Room
+    findRoomByGuest(guest_name: String!): Room
+    checkout(): Checkout
+  }
+
+  input checkinInput{
+    room_id: Int!,
+    name: String!,
+    check_in: String!,
+    party: Int!,
+    nights: Int!
+  }
+
+  type Mutation{
+    addUser(username: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+    checkin(input: checkinInput!): Room
+    checkout(room_id: Int!, name: String!): Room
   }
 `;
 
@@ -45,11 +73,5 @@ const typeDefs = gql`
   //check_in
   //check_out
 
-
-    // books: [Book]
-    // book(title: String!): Book
-// type Mutation {
-//   addBook(title: String!, author: String!, pages: Int!): Book
-// }
 
 module.exports = typeDefs;
