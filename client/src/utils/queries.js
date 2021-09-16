@@ -1,12 +1,10 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_BOOKS = gql`
-  query books {
-    books {
-      _id
-      title
-      author
-      pages
-    }
+export const QUERY_GUEST_COUNT = gql`
+query getGuestCount($guestCount: Int) {
+  guestCount(guestCount: $guestCount) {
+    guestCount
   }
-`;
+
+}
+`
