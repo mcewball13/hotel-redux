@@ -26,9 +26,25 @@ const typeDefs = gql`
 
   type Query{
     rooms: [Room]
-    room(room_id: Int!): Room
+    findRoomById(room_id: Int!): Room
+    findRoomByGuest(guest_Name: String!): Room
   }
 `;
+
+//type auth
+  // token
+
+//queries
+  //all Rooms
+  //findone Room
+  //find one guest
+
+//mutaions
+  //login
+  //signup
+  //check_in
+  //check_out
+
 
     // books: [Book]
     // book(title: String!): Book
