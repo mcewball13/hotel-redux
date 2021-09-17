@@ -6,7 +6,7 @@ import LateCheckout from "../components/DashboardComps/LateCheckout"
 import YourGuests from "../components/DashboardComps/YourGuests"
 
 
-const Home = () => {
+const Home = ({isActive}) => {
  
   return (
    <div className="home-wrapper">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,6 +8,7 @@ import {
 
 import Home from './pages/Home';
 import Header from './components/Header';
+import Login from "./pages/Login"
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -18,18 +19,24 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
+
 function App() {
+  const [isActive, setActive] = useState("false");
+  const toggleActive = () => {
+      setActive(!isActive);
+  }
   return (
     <ApolloProvider client={client}>
-      <div className="flex-column justify-flex-start min-100-vh">
-        <header className="bg-secondary mb-4 py-2 flex-row align-center">
-          <div className="container flex-row justify-space-between-lg justify-center align-center">
-            <Header></Header>
-          </div>
+      
+        <header>
+            <Header isActive={isActive} toggleActive={toggleActive}></Header>
         </header>
-        <div className="container">
-          <Home />
-        </div>
+        <div className={`flex-container-column w-100 h-100 j-center ${isActive ? 'shift-right': "normal"}`}>
+          <Login toggleActive={toggleActive}/>
+          {/* <Home /> */}
+          
+     
       </div>
     </ApolloProvider>
   );
