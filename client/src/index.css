@@ -136,13 +136,15 @@ nav a:hover {
   transition: ease-in-out .5s;
 }
 .normal {
+  margin-left: 50px;
   transition: ease-in-out .5s;
 }
 /* end utility classes */
 
 
-#home-wrapper {
-    width: 100%;
+.home-wrapper {
+  margin-left:10px;
+    width: 90%;
 }
 
 #guest-count-wrapper {
