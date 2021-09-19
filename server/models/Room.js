@@ -15,7 +15,7 @@ const RoomSchema = new Schema(
       type: Boolean,
       required: true,
     },
-    guests: [Guest.schema],
+    guests: Guest.schema
   },
   {
     toJSON: {

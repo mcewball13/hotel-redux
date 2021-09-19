@@ -6,11 +6,11 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     checkout: async (parent,args,context) => {
-      const url = new URL(contet.headers.referer).origin;
+      const url = new URL(context.headers.referer).origin;
     },
     rooms: async () => {
       return Room.find()
-      .populate('Guest.schema')
+      .populate('GuestSchema')
 
     },
     guests: async () => {
@@ -59,6 +59,15 @@ const resolvers = {
       const token = signToken(employee);
 
       return { token, employee };
+    },
+    checkin: async (parent, {room_id,input}) => {
+      const roomData = Room.findOneAndUpdate(
+        {room_id},
+        { $push: { guests: input } },
+        {new: true}
+
+      )
+      return roomData;
     }
       
     }
