@@ -16,7 +16,7 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-const Home = ({ isActive }) => {
+const Home = () => {
     return (
         <Container>
             <Grid container spacing={1} rowSpacing={1}>
