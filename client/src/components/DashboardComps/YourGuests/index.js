@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useQuery } from "@apollo/client";
+import {useQuery}  from "@apollo/client";
 import { QUERY_CURRENT_GUESTS } from "../../../utils/queries";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";

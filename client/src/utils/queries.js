@@ -16,11 +16,13 @@ query getLateCheckout($input: Input) {
 }
 `
 export const QUERY_CURRENT_GUESTS = gql`
-query guests(){
+query{
+ guests{
   name
   party
   nights
   check_in
   balance
+}
 }
 `
