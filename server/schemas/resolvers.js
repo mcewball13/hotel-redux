@@ -6,11 +6,11 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     checkout: async (parent,args,context) => {
-      const url = new URL(contet.headers.referer).origin;
+      const url = new URL(context.headers.referer).origin;
     },
     rooms: async () => {
       return Room.find()
-      .populate('Guest.schema')
+      .populate('Guest')
 
     },
     guests: async () => {
@@ -19,11 +19,11 @@ const resolvers = {
     },
     room: async (parent, { room_id, name}, context) => {
       if(room_id) {
-          return Room.findOne({room_id});
+          return await Room.findOne({room_id});
        }
 
       if(name) {
-         return Room.findOne({guests: {name}});
+         return await Room.findOne({guests: {name}});
        }
 
          
@@ -59,6 +59,18 @@ const resolvers = {
       const token = signToken(employee);
 
       return { token, employee };
+    },
+    checkin: async (parent, {room_id,input}) => {
+      
+      // console.log(input);
+      const roomData = await Room.findOneAndUpdate(
+        {room_id},
+        { $set: { guests: input } },
+        {new: true}
+       
+      )
+      console.log(roomData);
+      return roomData;
     }
       
     }
