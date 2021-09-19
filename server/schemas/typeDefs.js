@@ -34,8 +34,6 @@ const typeDefs = gql`
   }
 
   type Query{
-    guests: [Guest]
-    guest(name: String!): Guest
     rooms: [Room]
     employee: Employee
     room(room_id: Int, name: String): Room
@@ -53,8 +51,8 @@ const typeDefs = gql`
   type Mutation{
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    checkin(room_id: Int!, input: checkinInput!): Room
-    
+    check_in(room_id: Int!, input: checkinInput!): Room
+    check_out(room_id: Int!): Room
   }
 `;
 

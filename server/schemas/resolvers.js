@@ -1,4 +1,4 @@
-const { Employee, Guest, Room } = require('../models');
+const { Employee, Room } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -9,12 +9,7 @@ const resolvers = {
     //   const url = new URL(context.headers.referer).origin;
     // },
     rooms: async () => {
-      return Room.find()
-      .populate('guests')
-
-    },
-    guests: async () => {
-      return Guest.find()
+      return Room.find();
     },
     room: async (parent, { room_id, name}, context) => {
       if(room_id) {
@@ -25,14 +20,9 @@ const resolvers = {
       return await Room.findOne({'guests.name': name});
       }
     },
-    guest: async (parent, args, context) => {
-      // if(context.guest) {
-        console.log(parent)
-        const guestData = await Guest.findOne({name: args.name})
-
-        return guestData
-      // }
-    },
+    employee: async () => {
+      return await Employee.find();
+    }
   },
   Mutation: {
     addUser: async (parents, args) => {
@@ -58,7 +48,7 @@ const resolvers = {
 
       return { token, employee };
     },
-    checkin: async (parent, {room_id, input}) => {
+    check_in: async (parent, {room_id, input}) => {
       const roomData = await Room.findOneAndUpdate(
         {room_id},
         { $set: { guests: input } },
@@ -66,6 +56,14 @@ const resolvers = {
        
       )
       console.log(roomData);
+      return roomData;
+    },
+    check_out: async (parent, {room_id}) => {
+      const roomData = await Room.findOneAndUpdate(
+        {room_id},
+        {$set: {guests: null}},
+        {new: true}
+      )
       return roomData;
     }
       

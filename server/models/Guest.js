@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const GuestSchema = new Schema(
@@ -17,7 +17,6 @@ const GuestSchema = new Schema(
       type: Date,
       default: Date.now(),
       get: time => dateFormat(time)
-      
     },
     balance: {
       type: Number,
@@ -31,11 +30,4 @@ const GuestSchema = new Schema(
   }
 );
 
-
-// GuestSchema.virtual('check_out', ()=> {
-//   if(this.g)
-// });
-
-const Guest = model('Guest', GuestSchema);
-
-module.exports = Guest;
+module.exports = GuestSchema;
