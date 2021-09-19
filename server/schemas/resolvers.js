@@ -18,18 +18,28 @@ const resolvers = {
       
     },
     room: async (parent, { room_id, name}, context) => {
-      if(room_id) {
-          return await Room.findOne({room_id});
-       }
+      // if(room_id) {
+      //     return await Room.findOne({room_id});
+      // }
+      
 
-      if(name) {
-         return await Room.findOne({guests: {name}});
+     if(name) {
+      //console.log({guests}.parent);
+
+      //return await Room.find({guests: {guests}.filter(guest => guest.name === name)});
+      //return await parent.filter(guests => guests.name === name);
+      console.log(name);
+        return await Room.findOne({
+          'guests.name': name
+        }
+);
        }
 
          
     },
     guest: async (parent, args, context) => {
       // if(context.guest) {
+        console.log(parent)
         const guestData = await Guest.findOne({name: args.name})
 
         return guestData
@@ -60,7 +70,7 @@ const resolvers = {
 
       return { token, employee };
     },
-    checkin: async (parent, {room_id,input}) => {
+    checkin: async (parent, {room_id, input}) => {
       
       // console.log(input);
       const roomData = await Room.findOneAndUpdate(
