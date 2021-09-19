@@ -10,7 +10,7 @@ const resolvers = {
     },
     rooms: async () => {
       return Room.find()
-      .populate('Guest.schema')
+      .populate('Guests')
 
     },
     guests: async () => {
@@ -59,13 +59,23 @@ const resolvers = {
       const token = signToken(employee);
 
       return { token, employee };
-    }
-      
-    }
-
-
-  
+    },
+    checkin: async (parents, {input}, context) => {
+      // const {room_id} = context.room;
+      const {name, party, nights} = input;
+      //const guestData = Guest.create(name, party, nights)
+      return Room.findOneAndUpdate(
+        {room_id},
+        { 
+          $push: {
+            guests: {name, party, nights}
+          }
+        },
+        {new: true}
+      );
+    }  
   }
+}
 
 
 module.exports = resolvers;
