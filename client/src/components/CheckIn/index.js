@@ -35,44 +35,45 @@ console.log(selectedDate);
                     <TextField
                         required
                         id="fName"
-                        label="Required"
-                        defaultValue="First Name"
+                        label="First Name"
+                        variant="standard"
                     />
                     <TextField
                         required
                         id="lNAme"
-                        label="Required"
-                        defaultValue="Last Name"
+                        label="Last Name"
+                        variant="standard"
                     />
                     <TextField
                         required
                         id="email"
-                        label="Required"
-                        defaultValue="Email"
+                        label="Email"
+                        variant="standard"
                     />
                     <TextField
                         required
                         id="tel"
-                        label="Required"
-                        defaultValue="Phone Number"
+                        label="Phone Number"
+                        variant="standard"
                     />
                     <TextField
                         required
                         id="partyNum"
-                        label="Required"
-                        defaultValue="Number in Party"
+                        label="Number in Party"
+                        variant="standard"
                     />
                     <TextField
                         required
                         id="nightsNum"
-                        label="Required"
-                        defaultValue="Number of Nights"
+                        label="Nights"
+                        variant="standard"
                     />
                     <TextField
                         required
                         type="date"
                         id="date"
                         label="check-in"
+                        variant="standard"
                         defaultValue={selectedDate}
                         InputLabelProps={{
                             shrink: true,

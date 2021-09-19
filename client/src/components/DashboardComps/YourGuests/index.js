@@ -38,7 +38,7 @@ const YourGuests = () => {
             size="small"
             style={{ marginLeft: 16 }}
           >
-            Open
+            Pay Now
           </Button>
           )}
           
