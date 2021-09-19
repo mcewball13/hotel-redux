@@ -5,12 +5,12 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    checkout: async (parent,args,context) => {
-      const url = new URL(context.headers.referer).origin;
-    },
+    // checkout: async (parent,args,context) => {
+    //   const url = new URL(context.headers.referer).origin;
+    // },
     rooms: async () => {
       return Room.find()
-      .populate('Guest')
+      .populate('guests')
 
     },
     guests: async () => {
@@ -18,16 +18,11 @@ const resolvers = {
       
     },
     room: async (parent, { room_id, name}, context) => {
-      // if(room_id) {
-      //     return await Room.findOne({room_id});
-      // }
+      if(room_id) {
+          return await Room.findOne({room_id});
+      }
       
-
-     if(name) {
-      //console.log({guests}.parent);
-
-      //return await Room.find({guests: {guests}.filter(guest => guest.name === name)});
-      //return await parent.filter(guests => guests.name === name);
+      if(name) {
       console.log(name);
         return await Room.findOne({
           'guests.name': name

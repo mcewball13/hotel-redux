@@ -13,7 +13,7 @@ const typeDefs = gql`
     name: String
     party: Int
     nights: Int
-    check_in: Int
+    check_in: String
     balance: Int
   }
 
