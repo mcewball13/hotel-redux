@@ -9,7 +9,16 @@ const StoreProvider = ({ value = [], ...props }) => {
       categories: [],
       currentCategory: '',
     });
-    // use this to confirm it works!
-    console.log(state);
+
+
+   
     return <Provider value={[state, dispatch]} {...props} />;
   };
+
+  const UiProvider = ({value = [], ...props}) => {
+    const [state, dispatch] = useUiReducer({
+      isActive: false,
+      isLoginPage: false,
+    })
+    return <Provider value={[state, dispatch]} {...props} />;
+  }

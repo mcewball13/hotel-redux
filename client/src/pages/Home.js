@@ -1,7 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import GuestCount from "../components/DashboardComps/GuestCount";
-import Date from "../components/DashboardComps/Date";
 import LateCheckout from "../components/DashboardComps/LateCheckout";
 import YourGuests from "../components/DashboardComps/YourGuests";
 import CurrentDateTime from "../components/DashboardComps/Date";
@@ -12,7 +11,7 @@ import Grid from "@mui/material/Grid";
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
 }));
@@ -20,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const Home = ({ isActive }) => {
     return (
         <Container>
-            <Grid container spacing={1}>
+            <Grid container spacing={1} rowSpacing={1}>
                 <Grid item xs={12} md={3}>
                     <GuestCount></GuestCount>
                 </Grid>
@@ -33,7 +32,7 @@ const Home = ({ isActive }) => {
                 </Grid>
             </Grid>
             <Grid container spacing={1}>
-                <Grid item xs={12} md={12}>
+                <Grid item md={12}>
                     <YourGuests/>
                 </Grid>
             </Grid>
