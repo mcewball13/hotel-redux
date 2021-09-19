@@ -24,6 +24,7 @@ const client = new ApolloClient({
 
 function App() {
     const [state, dispatch] = useStoreContext();
+    
     const {isActive} = state;
 
     return (
