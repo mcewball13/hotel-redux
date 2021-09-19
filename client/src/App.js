@@ -37,7 +37,7 @@ function App() {
                     isActive ? "shift-right" : "normal"
                 }`}
             >
-                {/* <Login toggleActive={toggleActive}/> */}
+                <Login toggleActive={toggleActive}/>
                 <Home />
             </div>
         </ApolloProvider>
