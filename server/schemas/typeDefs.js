@@ -38,6 +38,7 @@ const typeDefs = gql`
     employee: Employee
     room(room_id: Int, name: String): Room
     checkout(test: String!): Checkout
+    vacancy: [Room]
   }
 
   input checkinInput{

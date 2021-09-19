@@ -20,6 +20,12 @@ const RoomSchema = new Schema(
   }
 );
 
+// RoomSchema.virtual("roomsAvailable", () => {
+//   let roomsAvailableCount = 0
+//   this.guests.length > 0 ? null : roomsAvailableCount++ 
+//   return roomsAvailableCount;
+// })
+
 const Room = model('Room', RoomSchema);
 
 module.exports = Room;

@@ -22,6 +22,11 @@ const resolvers = {
     },
     employee: async () => {
       return await Employee.find();
+    },
+    vacancy: async (parent, args, context) => {
+      const roomData = await Room.find();
+      const vacantRoom = roomData.filter(room => !room.guests);
+      return vacantRoom;
     }
   },
   Mutation: {
