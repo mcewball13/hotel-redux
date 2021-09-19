@@ -18,7 +18,7 @@ const CurrentDateTime = () => {
             >
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        Current Date and Time:
+                        Date and Time:
                     </Typography>
                     <Typography
                         gutterBottom

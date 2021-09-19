@@ -5,10 +5,11 @@ import {
     ApolloProvider,
     createHttpLink,
 } from "@apollo/client";
-
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import Login from "./pages/Login";
+import CheckInForm from "./components/CheckIn"
+import DateAdapter from '@mui/lab/AdapterMoment';
 
 const httpLink = createHttpLink({
     uri: "/graphql",
@@ -37,8 +38,9 @@ function App() {
                     isActive ? "shift-right" : "normal"
                 }`}
             >
-                <Login toggleActive={toggleActive}/>
-                <Home />
+                {/* <Login toggleActive={toggleActive}/> */}
+                {/* <Home /> */}
+                <CheckInForm/>
             </div>
         </ApolloProvider>
     );
