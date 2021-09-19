@@ -10,7 +10,7 @@ const resolvers = {
     },
     rooms: async () => {
       return Room.find()
-      .populate('GuestSchema')
+      .populate('Guest')
 
     },
     guests: async () => {
@@ -19,11 +19,11 @@ const resolvers = {
     },
     room: async (parent, { room_id, name}, context) => {
       if(room_id) {
-          return Room.findOne({room_id});
+          return await Room.findOne({room_id});
        }
 
       if(name) {
-         return Room.findOne({guests: {name}});
+         return await Room.findOne({guests: {name}});
        }
 
          
@@ -61,12 +61,15 @@ const resolvers = {
       return { token, employee };
     },
     checkin: async (parent, {room_id,input}) => {
-      const roomData = Room.findOneAndUpdate(
+      
+      // console.log(input);
+      const roomData = await Room.findOneAndUpdate(
         {room_id},
-        { $push: { guests: input } },
+        { $set: { guests: input } },
         {new: true}
-
+       
       )
+      console.log(roomData);
       return roomData;
     }
       
