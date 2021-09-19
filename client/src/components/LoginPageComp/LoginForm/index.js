@@ -1,4 +1,6 @@
 import React from "react";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 
 const LoginForm = ({ToggleClass}) => (
@@ -32,7 +34,7 @@ const LoginForm = ({ToggleClass}) => (
                 required
             />
 
-            <button className="login-btn">Login</button>
+            <Button variant="contained">Login</Button>
         </form>
         
     </div>

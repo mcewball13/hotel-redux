@@ -15,22 +15,15 @@ const resolvers = {
     },
     guests: async () => {
       return Guest.find()
-      
     },
     room: async (parent, { room_id, name}, context) => {
       if(room_id) {
-          return await Room.findOne({room_id});
+        return await Room.findOne({room_id});
       }
       
-      if(name) {
-      console.log(name);
-        return await Room.findOne({
-          'guests.name': name
-        }
-);
-       }
-
-         
+     if(name) {
+      return await Room.findOne({'guests.name': name});
+      }
     },
     guest: async (parent, args, context) => {
       // if(context.guest) {
@@ -66,8 +59,6 @@ const resolvers = {
       return { token, employee };
     },
     checkin: async (parent, {room_id, input}) => {
-      
-      // console.log(input);
       const roomData = await Room.findOneAndUpdate(
         {room_id},
         { $set: { guests: input } },
