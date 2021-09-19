@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { QUERY_GUEST_COUNT } from "../../../utils/queries";
+import { QUERY_ROOMS_AVAILABLE } from "../../../utils/queries";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 const GuestCount = () => {
-    const { loading, data } = useQuery(QUERY_GUEST_COUNT);
+    const { loading, data } = useQuery(QUERY_ROOMS_AVAILABLE);
     const guestCount = data?.guestCount || 0;
 
     return (
