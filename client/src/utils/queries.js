@@ -8,3 +8,19 @@ query getGuestCount($guestCount: Int) {
 
 }
 `
+export const QUERY_LATE_CHECKOUT = gql`
+query getLateCheckout($input: Input) {
+  lateCheckouts(input: $input) {
+    lateCheckouts
+  }
+}
+`
+export const QUERY_CURRENT_GUESTS = gql`
+query guests(){
+  name
+  party
+  nights
+  check_in
+  balance
+}
+`
