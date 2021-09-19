@@ -28,12 +28,12 @@ const resolvers = {
 
          
     },
-    guest: async () => {
-      if(context.guest) {
-        const guestData = await Guest.findOne({name: context.guest.name})
+    guest: async (parent, args, context) => {
+      // if(context.guest) {
+        const guestData = await Guest.findOne({name: args.name})
 
         return guestData
-      }
+      // }
     },
   },
   Mutation: {
