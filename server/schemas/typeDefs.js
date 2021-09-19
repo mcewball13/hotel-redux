@@ -38,6 +38,7 @@ const typeDefs = gql`
     guest(name: String!): Guest
     rooms: [Room]
     employee: Employee
+    rooom(name: String!): Room
     room(room_id: Int, name: String): Room
     checkout(test: String!): Checkout
   }
