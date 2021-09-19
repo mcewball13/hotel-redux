@@ -43,6 +43,7 @@ const typeDefs = gql`
   }
 
   input checkinInput{
+    room_id: Int!
     name: String!,
     party: Int!,
     nights: Int!

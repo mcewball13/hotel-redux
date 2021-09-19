@@ -62,7 +62,7 @@ const resolvers = {
     },
     checkin: async (parents, {input}, context) => {
       // const {room_id} = context.room;
-      const {name, party, nights} = input;
+      const {room_id, name, party, nights} = input;
       //const guestData = Guest.create(name, party, nights)
       return Room.findOneAndUpdate(
         {room_id},
