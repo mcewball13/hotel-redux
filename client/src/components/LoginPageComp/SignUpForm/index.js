@@ -1,6 +1,9 @@
 import React from "react";
 import {useStoreContext} from "../../../utils/GlobalState";
 import {ACTIVE_LOGIN_PLATE} from "../../../utils/actions"
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
 
 
 const SignupForm = () => {
@@ -21,38 +24,55 @@ const SignupForm = () => {
                 <div className="cursor" id="login-comp-tab" onClick={handlePlateChange}>Login</div>
                 <div className="cursor" id="signup-comp-tab">Sign Up</div>
             </div>
-            <form className="flex-container-column">
-                <label htmlFor="uname">
-                    <b>Username</b>
-                </label>
-                <input
-                    type="text"
-                    placeholder="Enter Username"
-                    name="uname"
-                    required
-                />
-                <label htmlFor="email">
-                    <b>Emaiil</b>
-                </label>
-                <input
-                    type="email"
-                    placeholder="Enter Email"
-                    name="email"
-                    required
-                />
-
-                <label htmlFor="psw">
-                    <b>Password</b>
-                </label>
-                <input
-                    type="password"
-                    placeholder="Enter Password"
-                    name="psw"
-                    required
-                />
-
-                <button className="login-btn">Sign Up</button>
-            </form>
+            <Grid
+                container
+                spacing={2}
+                justifyContent="center"
+                alignItems="center"
+            >
+                <Grid item xs={12} md={8}>
+                    <TextField
+                        id="email"
+                        label="Email"
+                        variant="standard"
+                        sx={{
+                            width: "100%",
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} md={8}>
+                    <TextField
+                        id="username"
+                        label="Username"
+                        variant="standard"
+                        sx={{
+                            width: "100%",
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={12} md={8}>
+                    <TextField
+                        id="password"
+                        label="Password"
+                        variant="standard"
+                        sx={{
+                            width: "100%",
+                        }}
+                    />
+                </Grid>
+                
+                <Grid item xs={12} md={8}>
+                    <Button
+                        color="success"
+                        variant="contained"
+                        sx={{
+                            width: "100%",
+                        }}
+                    >
+                        Login
+                    </Button>
+                </Grid>
+            </Grid>
         </div>
     );
 };
