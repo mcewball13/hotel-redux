@@ -8,7 +8,7 @@ import Nav from "../Nav"
 const Header = () => {
 
   const [state, dispatch] = useStoreContext()
-  const {isActive} = state;
+  const {isActive, isLoginPage} = state;
   const handleActiveChange = () => {
     dispatch({
       type: HEADER_ACTIVE,
@@ -17,7 +17,8 @@ const Header = () => {
 
 
   return (
-    <header className={`sideHeader ${isActive ? "" : "closed"}`}>
+<>
+    {isLoginPage ? <></>: <header className={`sideHeader ${isActive ? "" : "closed"}`}>
       <div className="flex-container-row end">
       <a className={`open-close-button ${isActive ? "open" : ""}`} onClick={()=>handleActiveChange()} />
       </div>
@@ -26,7 +27,8 @@ const Header = () => {
 
         </nav>
       
-    </header>
+    </header>}
+    </>
   );
 };
 
