@@ -8,6 +8,7 @@ const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useUiReducer({
     isActive: false,
     isLoginPlate: true,
+    isLoginPage: false,
   })
     return <Provider value={[state, dispatch]} {...props} />;
   };

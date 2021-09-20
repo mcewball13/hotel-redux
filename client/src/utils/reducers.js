@@ -1,4 +1,4 @@
-import { ACTIVE_LOGIN_PLATE, HEADER_ACTIVE } from "./actions";
+import { ACTIVE_LOGIN_PLATE, HEADER_ACTIVE, ACTIVE_LOGIN_PAGE } from "./actions";
 import { useReducer } from "react";
 
 export const reducer = (state, action) => {
@@ -13,6 +13,11 @@ export const reducer = (state, action) => {
                 ...state,
                 isActive: !state.isActive,
             };
+            case ACTIVE_LOGIN_PAGE:
+                return {
+                    ...state,
+                    isLoginPage: !state.isLoginPage
+                }
 
         default:
             return state;
