@@ -8,25 +8,40 @@ const resolvers = {
     // checkout: async (parent,args,context) => {
     //   const url = new URL(context.headers.referer).origin;
     // },
-    rooms: async () => {
-      return Room.find();
+    rooms: async (parent, args, context) => {
+      if(context.employee){
+        return await Room.find();
+      }
+      throw new AuthenticationError('Must be logged in');
     },
     room: async (parent, { room_id, name}, context) => {
-      if(room_id) {
-        return await Room.findOne({room_id});
+      if(context.employee){
+        if(room_id) {
+          return await Room.findOne({room_id});
+        }
+        
+      if(name) {
+        return await Room.findOne({'guests.name': name});
+        }
       }
-      
-     if(name) {
-      return await Room.findOne({'guests.name': name});
-      }
+      throw new AuthenticationError('Must be logged in');
     },
-    employee: async () => {
-      return await Employee.find();
+    employee: async (parent, args, context) => {
+      if(context.employee){
+        const employeeData = await Employee.findOne(
+          {_id: context.employee._id}
+          ).select("-__v -password");
+          return employeeData;
+      }
+      throw new AuthenticationError('Must Be Logged in');
     },
     vacancy: async (parent, args, context) => {
-      const roomData = await Room.find();
-      const vacantRoom = roomData.filter(room => !room.guests);
-      return vacantRoom;
+      if(context.employee){
+        const roomData = await Room.find();
+        const vacantRoom = roomData.filter(room => !room.guests);
+        return vacantRoom;
+      }
+      throw new AuthenticationError('Must be logged in');
     }
   },
   Mutation: {
@@ -37,7 +52,7 @@ const resolvers = {
       return { token, employee};
     },
     login: async (parent, { email, password }) => {
-      const employee = await User.findOne({email});
+      const employee = await Employee.findOne({email});
 
       if (!employee) {
         throw new AuthenticationError('Incorrect Credentials');
@@ -53,23 +68,28 @@ const resolvers = {
 
       return { token, employee };
     },
-    check_in: async (parent, {room_id, input}) => {
-      const roomData = await Room.findOneAndUpdate(
-        {room_id},
-        { $set: { guests: input } },
-        {new: true}
-       
-      )
-      console.log(roomData);
-      return roomData;
+    check_in: async (parent, {room_id, input}, context) => {
+      if(context.employee){
+        const roomData = await Room.findOneAndUpdate(
+          {room_id},
+          { $set: { guests: input } },
+          {new: true}
+        );
+        console.log(roomData);
+        return roomData;
+      }
+      throw new AuthenticationError('Must be logged in');
     },
     check_out: async (parent, {room_id}) => {
-      const roomData = await Room.findOneAndUpdate(
-        {room_id},
-        {$set: {guests: null}},
-        {new: true}
-      )
-      return roomData;
+      if(context.employee){
+        const roomData = await Room.findOneAndUpdate(
+          {room_id},
+          {$set: {guests: null}},
+          {new: true}
+        )
+        return roomData;
+      }
+      throw new AuthenticationError('Must be logged in');
     }
       
   }
