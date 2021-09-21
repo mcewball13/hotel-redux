@@ -1,32 +1,28 @@
-import {
-    UPDATE_CURRENT_CATEGORY,
-    UPDATE_PRODUCTS,
-    UPDATE_CATEGORIES
-} from "./actions"
-import { useReducer } from 'react';
+import { ACTIVE_LOGIN_PLATE, HEADER_ACTIVE, ACTIVE_LOGIN_PAGE } from "./actions";
+import { useReducer } from "react";
 
 export const reducer = (state, action) => {
     switch (action.type) {
-        case UPDATE_PRODUCTS:
+        case ACTIVE_LOGIN_PLATE:
             return {
                 ...state,
-                products: [...action.products],
-            }
-            case UPDATE_CATEGORIES:
+                isLoginPlate: !state.isLoginPlate,
+            };
+        case HEADER_ACTIVE:
+            return {
+                ...state,
+                isActive: !state.isActive,
+            };
+            case ACTIVE_LOGIN_PAGE:
                 return {
                     ...state,
-                    categories: [...action.categories]
+                    isLoginPage: !state.isLoginPage
                 }
-            case UPDATE_CURRENT_CATEGORY:
-                return {
-                    ...state,
-                    currentCategory: action.currentCategory
-                }
-            
+
         default:
             return state;
     }
-}
-export function useProductReducer(initialState) {
+};
+export function useUiReducer(initialState) {
     return useReducer(reducer, initialState);
-  }
+}

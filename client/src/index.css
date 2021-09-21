@@ -132,17 +132,19 @@ nav a:hover {
     justify-content: space-around;
 }
 .shift-right {
-  margin-left: 10%;
+  padding-left: 20%;
   transition: ease-in-out .5s;
 }
 .normal {
+  padding-left: 50px;
   transition: ease-in-out .5s;
 }
 /* end utility classes */
 
 
-#home-wrapper {
-    width: 100%;
+.home-wrapper {
+  margin-left:10px;
+    width: 90%;
 }
 
 #guest-count-wrapper {

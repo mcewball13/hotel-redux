@@ -1,45 +1,40 @@
-import React, {useState} from 'react';
+import React from "react";
+import {StoreProvider} from "./utils/GlobalState"
 import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from '@apollo/client';
-
-import Home from './pages/Home';
-import Header from './components/Header';
-import Login from "./pages/Login"
+    ApolloClient,
+    InMemoryCache,
+    ApolloProvider,
+    createHttpLink,
+} from "@apollo/client";
+import {setContext} from "@apollo/client/link/context"
+import CompSwitcher from "./components/CompSwitcher";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+    uri: "/graphql",
 });
-
+const authLink = setContext((_, {headers}) => {
+    const token = localStorage.getItem('id_token');
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : ``,
+      },
+    }
+})
 const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache(),
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache(),
 });
-
-
 
 function App() {
-  const [isActive, setActive] = useState("false");
-  const toggleActive = () => {
-      setActive(!isActive);
-  }
-  return (
-    <ApolloProvider client={client}>
-      
-        <header>
-            <Header isActive={isActive} toggleActive={toggleActive}></Header>
-        </header>
-        <div className={`flex-container-column w-100 h-100 j-center ${isActive ? 'shift-right': "normal"}`}>
-          <Login toggleActive={toggleActive}/>
-          {/* <Home /> */}
-          
-     
-      </div>
-    </ApolloProvider>
-  );
+
+    return (
+        <ApolloProvider client={client}>
+            <StoreProvider>
+                <CompSwitcher />
+            </StoreProvider>
+        </ApolloProvider>
+    );
 }
 
 export default App;

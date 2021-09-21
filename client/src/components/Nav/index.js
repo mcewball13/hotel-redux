@@ -1,25 +1,25 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import { useStoreContext } from "../../utils/GlobalState";
+import { capitalizeFirstLetter } from "../../utils/helpers";
 
 function Nav() {
-   
+    const tabs = ["check-in", "check-out"];
+    const [state, dispatch] = useStoreContext();
+    const { currentTab } = state;
+
     return (
         <div>
-             <h1>Hotel Redux</h1>
+            <Link to="/">
+                <h1>Hotel Redux</h1>
+            </Link>
             <ul className="nav-links-wrapper">
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Clients</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+                {tabs.map((tab) => (
+                    <Link to={`/${tab}`}>
+                        <li>{capitalizeFirstLetter(tab)}</li>
+                    </Link>
+                ))}
             </ul>
         </div>
     );

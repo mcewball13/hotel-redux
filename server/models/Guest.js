@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 const GuestSchema = new Schema(
   {
@@ -14,7 +15,8 @@ const GuestSchema = new Schema(
     },
     check_in: {
       type: Date,
-      default: new Date(),
+      default: Date.now(),
+      get: time => dateFormat(time)
     },
     balance: {
       type: Number,
@@ -22,19 +24,10 @@ const GuestSchema = new Schema(
   },
   {
     toJSON: {
+      getters: true,
       virtuals: true,
     }
   }
 );
 
-
-GuestSchema.virtual('check_out', ()=> {
-  if(GuestSchema.check_in){
-    // let check_out = GuestSchema.check_in * GuestSchema.nights;
-    //use util date format
-  }
-});
-
-const Guest = model('Guest', GuestSchema);
-
-module.exports = Guest;
+module.exports = GuestSchema;
