@@ -6,6 +6,7 @@ export const LOGIN = gql`
       token
       employee {
         _id
+        
       }
     }
   }
