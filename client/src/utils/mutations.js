@@ -31,8 +31,8 @@ export const ADD_ORDER = gql`
 
 export const ADD_USER = gql`
   mutation addUser(
-    $username: String!
-    $email: String!
+    $username: String!,
+    $email: String!,
     $password: String!
   ) {
     addUser(
@@ -41,8 +41,9 @@ export const ADD_USER = gql`
       password: $password
     ) {
       token
-      user {
+      employee {
         _id
+        username
       }
     }
   }

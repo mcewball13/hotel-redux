@@ -23,5 +23,6 @@
     "@mui/lab": "^5.0.0-alpha.47",
     "bootstrap": "^5.1.0",
     "react-bootstrap": "^2.0.0-beta.6"
-  }
+  },
+  "homepage": "https://github.com/mcewball13/hotel-redux#readme"
 }
