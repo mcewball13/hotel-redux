@@ -14,14 +14,8 @@ const CompSwitcher = () => {
 
     return (
         <Router>
-            <header>
-                <Header />
-            </header>
-            <div
-                className={`flex-container-column w-100 h-100 j-center ${
-                    isActive ? "shift-right" : "normal"
-                }`}
-            >
+            <Header />
+            <div className={`${isActive ? "shift-right" : "normal"}`}>
                 <Switch>
                     <Route exact path="/login" component={Login}></Route>
                     <Route exact path="/" component={Home}></Route>

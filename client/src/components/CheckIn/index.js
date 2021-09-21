@@ -13,90 +13,81 @@ import {
 } from "@material-ui/pickers";
 
 const CheckInForm = () => {
-    const [selectedDate, setSelectedDate] = useState(
-        new Date()
-    );
+    const [selectedDate, setSelectedDate] = useState(new Date());
     const handleDateChange = (e) => {
-        setSelectedDate(e.target.value)
-
+        setSelectedDate(e.target.value);
     };
-console.log(selectedDate);
+    console.log(selectedDate);
     return (
-        <>
             <Grid
+                alignItems="center"
+                justifyContent="center"
+                container
                 component="form"
+                xs={12}
                 sx={{
-                    "& .MuiTextField-root": { m: 1, width: "25ch" },
+                    "& .MuiTextField-root": { m: 1, width: '25ch'},
+                    minHeight: '100vh'
                 }}
                 noValidate
                 autoComplete="off"
             >
-                <div>
-                    <TextField
-                        required
-                        id="fName"
-                        label="First Name"
-                        variant="standard"
-                    />
-                    <TextField
-                        required
-                        id="lNAme"
-                        label="Last Name"
-                        variant="standard"
-                    />
-                    <TextField
-                        required
-                        id="email"
-                        label="Email"
-                        variant="standard"
-                    />
-                    <TextField
-                        required
-                        id="tel"
-                        label="Phone Number"
-                        variant="standard"
-                    />
-                    <TextField
-                        required
-                        id="partyNum"
-                        label="Number in Party"
-                        variant="standard"
-                    />
-                    <TextField
-                        required
-                        id="nightsNum"
-                        label="Nights"
-                        variant="standard"
-                    />
-                    <TextField
-                        required
-                        type="date"
-                        id="date"
-                        label="check-in"
-                        variant="standard"
-                        defaultValue={selectedDate}
-                        InputLabelProps={{
-                            shrink: true,
-                          }}
-                          onChange={handleDateChange}
-                    />
-                    {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <KeyboardDatePicker
-                        disableToolbar
-                        format="MM/dd/yyy"
-                        margin='normal'
-                        id='date-picker'
-                        label='Date Picker'
-                        value={selectedDate}
-                        onChange={handleDateChange}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change-date'
-                        }}
-                        />
-                    </MuiPickersUtilsProvider> */}
-                </div>
+                <Grid item xs={12} md={8} align="center">
+                    <Paper  spacing={16} elevation={4} sx={{borderRadius: 4, p:4 }}>
+                        <h2>Check in</h2>
+                            <TextField
+                                required
+                                id="fName"
+                                label="First Name"
+                                variant="standard"
+                            />
+                            <TextField
+                                required
+                                id="lNAme"
+                                label="Last Name"
+                                variant="standard"
+                            />
+                            <TextField
+                                required
+                                id="email"
+                                label="Email"
+                                variant="standard"
+                            />
+                            <TextField
+                                required
+                                id="tel"
+                                label="Phone Number"
+                                variant="standard"
+                            />
+                            <TextField
+                                required
+                                id="partyNum"
+                                label="Number in Party"
+                                variant="standard"
+                            />
+                            <TextField
+                                required
+                                id="nightsNum"
+                                label="Nights"
+                                variant="standard"
+                            />
+                            <TextField
+                            fullWidth
+                                required
+                                type="date"
+                                id="date"
+                                label="check-in"
+                                variant="standard"
+                                defaultValue={selectedDate}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                onChange={handleDateChange}
+                            />
+                    </Paper>
+                </Grid>
             </Grid>
-        </>
+      
     );
 };
 
