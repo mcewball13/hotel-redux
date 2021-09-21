@@ -8,7 +8,7 @@ import Nav from "../Nav"
 const Header = () => {
 
   const [state, dispatch] = useStoreContext()
-  const {isActive, isLoginPage} = state;
+  const {isActive, isLoginPage, currentTab} = state;
   const handleActiveChange = () => {
     dispatch({
       type: HEADER_ACTIVE,
