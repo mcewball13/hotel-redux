@@ -28,3 +28,11 @@ export const QUERY_CURRENT_GUESTS = gql`
         }
     }
 `;
+
+export const QUERY_EMPLOYEE_USERNAME = gql`
+    {
+        employee{
+            username
+        }
+    }
+`;

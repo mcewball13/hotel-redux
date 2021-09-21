@@ -8,7 +8,6 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
-import Box from '@mui/material/Box';
 import Auth from '../../../utils/auth';
 
 
@@ -62,7 +61,7 @@ const SignupForm = () => {
       Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
-      setShowAlert(true);
+      //setShowAlert(true);
     }
 
     setUserFormData({
@@ -79,11 +78,6 @@ const SignupForm = () => {
                 <div className="cursor" id="login-comp-tab" onClick={handlePlateChange}>Login</div>
                 <div className="cursor" id="signup-comp-tab">Sign Up</div>
             </div>
-            {/* <Box
-                component="form"
-                noValidate 
-                validated={validated}
-            > */}
             <Grid
                 container
                 spacing={2}
@@ -155,7 +149,6 @@ const SignupForm = () => {
                     </Button>
                 </Grid>   
             </Grid>
-            {/* </Box>  */}
         </div>
     );
 };
