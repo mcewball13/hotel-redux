@@ -4,3 +4,6 @@ export function pluralize(name, count) {
   }
   return name + 's'
 }
+export function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
