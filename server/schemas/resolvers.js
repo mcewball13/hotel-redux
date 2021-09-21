@@ -8,12 +8,23 @@ const resolvers = {
     // checkout: async (parent,args,context) => {
     //   const url = new URL(context.headers.referer).origin;
     // },
+    //query for all rooms
     rooms: async (parent, args, context) => {
       if(context.employee){
         return await Room.find();
       }
       throw new AuthenticationError('Must be logged in');
     },
+    //query for any guests in rooms and return on the rooms with guests
+    guests: async (parent, args, context) => {
+      if(context.employee){
+        const roomData = await Room.find();
+        const vacantRoom = roomData.filter(room => room.guests);
+        return vacantRoom;
+      }
+      throw new AuthenticationError('Must be logged in');
+    },
+    //query for guest in a room or room_id
     room: async (parent, { room_id, name}, context) => {
       if(context.employee){
         if(room_id) {
@@ -26,6 +37,7 @@ const resolvers = {
       }
       throw new AuthenticationError('Must be logged in');
     },
+    //query for employee data
     employee: async (parent, args, context) => {
       if(context.employee){
         const employeeData = await Employee.findOne(
@@ -35,6 +47,7 @@ const resolvers = {
       }
       throw new AuthenticationError('Must Be Logged in');
     },
+    //return any room that is vacant
     vacancy: async (parent, args, context) => {
       if(context.employee){
         const roomData = await Room.find();
@@ -45,12 +58,14 @@ const resolvers = {
     }
   },
   Mutation: {
+    //create user data
     addUser: async (parents, args) => {
       const employee = await Employee.create(args);
       const token = signToken(employee);
 
       return { token, employee};
     },
+    //login with excisiting user data
     login: async (parent, { email, password }) => {
       const employee = await Employee.findOne({email});
 
@@ -68,6 +83,7 @@ const resolvers = {
 
       return { token, employee };
     },
+    //create and check in a guest into a room
     check_in: async (parent, {room_id, input}, context) => {
       if(context.employee){
         const roomData = await Room.findOneAndUpdate(
@@ -80,7 +96,8 @@ const resolvers = {
       }
       throw new AuthenticationError('Must be logged in');
     },
-    check_out: async (parent, {room_id}) => {
+    //remove / delete the user from the room
+    check_out: async (parent, {room_id}, context) => {
       if(context.employee){
         const roomData = await Room.findOneAndUpdate(
           {room_id},

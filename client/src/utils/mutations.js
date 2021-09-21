@@ -48,3 +48,34 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const CHECK_IN = gql`
+  mutation check_in(
+    $room_id: Int!, 
+    $input: checkinInput!
+    ) {
+      check_in(room_id: $room_id, input: $input){
+        room_id
+        guests{
+          name
+          party
+          nights
+          check_in
+          balance
+        }
+      }
+    }
+`;
+
+export const CHECK_OUT = gql`
+  mutation check_out(
+    $room_id: Int!, 
+    ) {
+      check_out(room_id: $room_id){
+        room_id
+        guests{
+          name
+        }
+      }
+    }
+`;
