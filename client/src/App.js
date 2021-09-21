@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {StoreProvider} from "./utils/GlobalState"
 import {
     ApolloClient,
@@ -11,8 +11,8 @@ import CompSwitcher from "./components/CompSwitcher";
 
 const httpLink = createHttpLink({
     uri: "/graphql",
-  });
-  const authLink = setContext((_, {headers}) => {
+});
+const authLink = setContext((_, {headers}) => {
     const token = localStorage.getItem('id_token');
     return {
       headers: {
@@ -20,11 +20,11 @@ const httpLink = createHttpLink({
         authorization: token ? `Bearer ${token}` : ``,
       },
     }
-  })
-  const client = new ApolloClient({
+})
+const client = new ApolloClient({
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
-  });
+});
 
 function App() {
 
