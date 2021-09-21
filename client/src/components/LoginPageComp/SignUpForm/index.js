@@ -63,10 +63,10 @@ const SignupForm = () => {
                 
                 <Grid item xs={12} md={8}>
                     <Button
-                        color="success"
                         variant="contained"
                         sx={{
                             width: "100%",
+                            color: "#F5D473"
                         }}
                     >
                         Login
