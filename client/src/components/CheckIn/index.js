@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import DateFnsUtils from "@date-io/date-fns";
@@ -17,6 +18,12 @@ const CheckInForm = () => {
     const handleDateChange = (e) => {
         setSelectedDate(e.target.value);
     };
+
+    function handleCheckIn () {
+        // make query
+        console.log("clicked")
+        // will it need cleanup?
+    }
     console.log(selectedDate);
     return (
             <Grid
@@ -84,6 +91,9 @@ const CheckInForm = () => {
                                 }}
                                 onChange={handleDateChange}
                             />
+                            <Grid item xs={8}>
+                            <Button onClick={handleCheckIn} variant="contained" >Check-in</Button>
+                            </Grid>
                     </Paper>
                 </Grid>
             </Grid>
