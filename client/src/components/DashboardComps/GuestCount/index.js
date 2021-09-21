@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ROOMS_AVAILABLE } from "../../../utils/queries";
 import {useStoreContext} from "../../../utils/GlobalState";
+import {GET_ROOM_COUNT} from "../../../utils/actions"
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -30,7 +31,7 @@ const GuestCount = () => {
                     height: "100%"
                 }}>
                     <Typography gutterBottom variant="h5" component="div">
-                        Room Availability: {loading ? (<div>Loading...</div>):(<h2>{roomsAvailable}</h2>)}
+                        Room Availability: {<h2>{roomsAvailable}</h2>}
                     </Typography>
                 </CardContent>
             </Card>

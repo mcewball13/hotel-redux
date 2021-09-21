@@ -2,6 +2,7 @@ import {
     ACTIVE_LOGIN_PLATE,
     HEADER_ACTIVE,
     ACTIVE_LOGIN_PAGE,
+    GET_ROOM_COUNT
 } from "./actions";
 import { useReducer } from "react";
 
