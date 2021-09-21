@@ -33,46 +33,52 @@ const CheckInForm = () => {
                 component="form"
                 xs={12}
                 sx={{
-                    "& .MuiTextField-root": { m: 1, width: '25ch'},
+                    "& .MuiTextField-root": { m: 1},
                     minHeight: '100vh'
                 }}
                 noValidate
                 autoComplete="off"
             >
-                <Grid item xs={12} md={8} align="center">
-                    <Paper  spacing={16} elevation={4} sx={{borderRadius: 4, p:4 }}>
+                <Grid item xs={10} md={6} align="center">
+                    <Paper  xs={8} spacing={16} elevation={4} sx={{borderRadius: 4, p:4}}>
                         <h2>Check in</h2>
                             <TextField
+                            fullWidth
                                 required
                                 id="fName"
                                 label="First Name"
                                 variant="standard"
                             />
                             <TextField
+                            fullWidth
                                 required
                                 id="lNAme"
                                 label="Last Name"
                                 variant="standard"
                             />
                             <TextField
+                            fullWidth
                                 required
                                 id="email"
                                 label="Email"
                                 variant="standard"
                             />
                             <TextField
+                            fullWidth
                                 required
                                 id="tel"
                                 label="Phone Number"
                                 variant="standard"
                             />
                             <TextField
+                            fullWidth
                                 required
                                 id="partyNum"
                                 label="Number in Party"
                                 variant="standard"
                             />
                             <TextField
+                            fullWidth
                                 required
                                 id="nightsNum"
                                 label="Nights"
