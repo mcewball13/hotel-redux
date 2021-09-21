@@ -9,6 +9,8 @@ const StoreProvider = ({ value = [], ...props }) => {
     isActive: false,
     isLoginPlate: true,
     isLoginPage: false,
+    currentTab: [],
+    rooms: []
   })
     return <Provider value={[state, dispatch]} {...props} />;
   };
