@@ -58,19 +58,4 @@ const typeDefs = gql`
   }
 `;
 
-//type auth
-  // token
-
-//queries
-  //all Rooms
-  //findone Room
-  //find one guest
-
-//mutaions
-  //login
-  //signup
-  //check_in
-  //check_out
-
-
 module.exports = typeDefs;
