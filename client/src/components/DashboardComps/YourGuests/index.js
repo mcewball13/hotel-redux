@@ -14,7 +14,9 @@ const YourGuests = () => {
   const [state, dispatch] = useStoreContext()
   const {checkedInGuests} = state;
     const {loading, data} = useQuery(QUERY_CURRENT_GUESTS);
+
     const {guests} = data;
+
     
     useEffect(() => {
     

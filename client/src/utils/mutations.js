@@ -44,7 +44,7 @@ export const CHECK_IN_GUEST = gql`
 mutation check_in($room_id: String!, $input: checkinInput) {
   check_in(room_id: $room_id, input: $input) {
     room_id
-      guests {
+      guest {
         name
         balance
         party
@@ -53,4 +53,35 @@ mutation check_in($room_id: String!, $input: checkinInput) {
       }
     }
   }
+`;
+
+export const CHECK_IN = gql`
+  mutation check_in(
+    $room_id: Int!, 
+    $input: checkinInput!
+    ) {
+      check_in(room_id: $room_id, input: $input){
+        room_id
+        guest{
+          name
+          party
+          nights
+          check_in
+          balance
+        }
+      }
+    }
+`;
+
+export const CHECK_OUT = gql`
+  mutation check_out(
+    $room_id: Int!, 
+    ) {
+      check_out(room_id: $room_id){
+        room_id
+        guest{
+          name
+        }
+      }
+    }
 `;

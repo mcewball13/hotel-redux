@@ -21,7 +21,7 @@ const typeDefs = gql`
     _id: ID
     room_id: Int!
     description: String
-    guests: Guest
+    guest: Guest
   }
 
   type Auth {
@@ -35,6 +35,7 @@ const typeDefs = gql`
 
   type Query{
     rooms: [Room]
+    guests: [Room]
     employee: Employee
     room(room_id: Int, name: String): Room
     checkout(test: String!): Checkout
@@ -56,20 +57,5 @@ const typeDefs = gql`
     check_out(room_id: Int!): Room
   }
 `;
-
-//type auth
-  // token
-
-//queries
-  //all Rooms
-  //findone Room
-  //find one guest
-
-//mutaions
-  //login
-  //signup
-  //check_in
-  //check_out
-
 
 module.exports = typeDefs;
