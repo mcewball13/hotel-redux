@@ -60,7 +60,7 @@ const CheckInForm = () => {
         console.log(`This is Form State ${formState}`);
 
         try {
-            await check_in({
+            const {data} = await check_in({
                 variables: {
                     room_id: '2',
                     input: {
