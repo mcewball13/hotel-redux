@@ -12,7 +12,7 @@ import TextField from "@mui/material/TextField";
 import Auth from "../../utils/auth";
 
 const CheckInForm = () => {
-    const [, dispatch] = useStoreContext();
+    const [state, dispatch] = useStoreContext();
     const [check_in] = useMutation(CHECK_IN_GUEST);
 
     const [formState, setFormState] = useState({
@@ -24,13 +24,14 @@ const CheckInForm = () => {
     });
 
     // useEffect(() => {
-    //     if (check_in) {
+    //     if (formState) {
     //         dispatch({
     //             type: CHECK_IN,
-    //             checkedInGuests: check_in,
+    //             checkedInGuests: formState,
     //         });
     //     }
-    // }, [check_in, dispatch]);
+    //     console.log(`This is the check_in ${check_in}`);
+    // }, [formState, dispatch]);
 
     // local state for date picker
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -39,8 +40,11 @@ const CheckInForm = () => {
     };
 
     const handleInputChange = (event) => {
+        
         const { name, value } = event.target;
+        console.log(name, value)
         setFormState({ ...formState, [name]: value });
+        console.log(formState);
     };
 
     // Hand form submit function
@@ -53,12 +57,12 @@ const CheckInForm = () => {
             event.preventDefault();
             event.stopPropagation();
         }
-        console.log(formState);
+        console.log(`This is Form State ${formState}`);
 
         try {
-            const { data } = await check_in({
+            await check_in({
                 variables: {
-                    room_id: '3',
+                    room_id: '2',
                     input: {
                         name: formState.name,
                         balance: formState.balance,
@@ -70,13 +74,10 @@ const CheckInForm = () => {
                 
             });
             
-            dispatch({
-                type: CHECK_IN,
-                checkedInGuests: data,
-            });
-            Auth.login(data.addUser.token);
+            console.log(`This is a success`)
+            // Auth.login(data.addUser.token);
         } catch (err) {
-            console.log("clicked");
+            console.log("Error reached clicked");
             console.error(err);
         }
 

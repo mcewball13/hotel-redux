@@ -11,15 +11,15 @@ const typeDefs = gql`
   type Guest {
     _id: ID
     name: String
-    party: String
-    nights: String
+    party: Int
+    nights: Int
     check_in: String
-    balance: String
+    balance: Int
   }
 
   type Room {
     _id: ID
-    room_id: String
+    room_id: Int!
     description: String
     guests: Guest
   }
@@ -42,17 +42,17 @@ const typeDefs = gql`
   }
 
   input checkinInput{
-    balance: String!
+    balance: Int!
     name: String!,
     check_in: String!,
-    party: String!,
-    nights: String!
+    party: Int!,
+    nights: Int!
   }
 
   type Mutation{
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    check_in(room_id: String!, input: checkinInput!): Room
+    check_in(room_id: Int!, input: checkinInput!): Room
     check_out(room_id: Int!): Room
   }
 `;

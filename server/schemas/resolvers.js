@@ -14,6 +14,20 @@ const resolvers = {
       }
       throw new AuthenticationError('Must be logged in');
     },
+<<<<<<< Updated upstream
+=======
+    //query for any guests in rooms and return on the rooms with guests
+    guests: async (parent, args, context) => {
+      if(context.employee){
+        const roomData = await Room.find();
+        const vacantRoom = roomData.filter(room => !room.guest);
+        console.log(vacantRoom)
+        return vacantRoom;
+      }
+      throw new AuthenticationError('Must be logged in');
+    },
+    //query for guest in a room or room_id
+>>>>>>> Stashed changes
     room: async (parent, { room_id, name}, context) => {
       if(context.employee){
         if(room_id) {
@@ -38,8 +52,12 @@ const resolvers = {
     vacancy: async (parent, args, context) => {
       if(context.employee){
         const roomData = await Room.find();
+<<<<<<< Updated upstream
         console.log(roomData);
         return roomData.filter(room => !room.guests);
+=======
+        return roomData.filter(room => !room.guest);
+>>>>>>> Stashed changes
       }
       throw new AuthenticationError('Must be logged in');
     }

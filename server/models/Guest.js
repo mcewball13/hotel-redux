@@ -8,10 +8,10 @@ const GuestSchema = new Schema(
       required: true,
     },
     party: {
-      type: String,
+      type: Number,
     },
     nights: {
-      type: String,
+      type: Number,
     },
     check_in: {
       type: Date,
@@ -19,7 +19,7 @@ const GuestSchema = new Schema(
       get: time => dateFormat(time)
     },
     balance: {
-      type: String,
+      type: Number,
     }
   },
   {
