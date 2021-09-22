@@ -53,30 +53,31 @@ const CheckInForm = () => {
             event.preventDefault();
             event.stopPropagation();
         }
-        console.log(formState);
+        console.log(formState.date);
 
         try {
             const { data } = await check_in({
                 variables: {
-                    room_id: '3',
+                    room_id: "3",
                     input: {
                         name: formState.name,
                         balance: formState.balance,
                         party: formState.party,
                         nights: formState.nights,
-                        date: formState.date,
-                    },
+                        check_in: formState.date,
+                    }
                 },
                 
             });
+            console.log(data);
             
-            dispatch({
-                type: CHECK_IN,
-                checkedInGuests: data,
-            });
-            Auth.login(data.addUser.token);
+            // dispatch({
+            //     type: CHECK_IN_GUEST,
+            //     checkedInGuests: data,
+            // });
+            //Auth.login(data.addUser.token);
         } catch (err) {
-            console.log("clicked");
+            //console.log("clicked");
             console.error(err);
         }
 
@@ -85,7 +86,7 @@ const CheckInForm = () => {
             balance: "",
             party: "",
             nights: "",
-            date: "",
+            check_in: "",
         });
     };
 
