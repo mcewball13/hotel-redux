@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_CURRENT_GUESTS } from "../../../utils/queries";
 import {useStoreContext} from '../../../utils/GlobalState'
+import {CHECK_IN} from '../../../utils/actions'
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -13,29 +14,38 @@ import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 const YourGuests = () => {
   const [state, dispatch] = useStoreContext()
   const {checkedInGuests} = state;
-    const {loading, data} = useQuery(QUERY_CURRENT_GUESTS);
-
-    const {guests} = data;
-
+    const {data: checkedIn} = useQuery(QUERY_CURRENT_GUESTS);
+    // console.log(`this is data ${JSON.stringify(data.checkedIn[0].guest.name)}`)
+    
     
     useEffect(() => {
-    
-        dispatch()
-    }, [dispatch])
+      if (checkedIn) {
+        dispatch({
+          type: CHECK_IN,
+          checkedInGuests: checkedIn,
+        })
+    }
+        // dispatch()
+    }, [dispatch, checkedIn])
+  const guestList = checkedInGuests
+  
+  guestList.forEach((guest) => {
+     console.log(guest)
+   })
 
-   const rows = guests.map((guest, i) => ({
-        id: i,
-        name: guest.name,
-        party: guest.party,
-        nights: guest.nights,
-        check_in: guest.check_in,
-        balance: guest.balance,
-    }));
+  //  const rows = guests.map((guest, i) => ({
+  //       id: i,
+  //       name: guest.name,
+  //       party: guest.party,
+  //       nights: guest.nights,
+  //       check_in: guest.check_in,
+  //       balance: guest.balance,
+  //   }));
     // const columns:
 
     return (
         <div style={{ height: 250 }}>
-            {loading ? <div>Loading...</div> : <DataGrid
+            {/* <DataGrid
                 columns={[
                     { field: "name", headerName: "Name", width: 150 },
                     { field: "party", headerName: "Party", width: 150 },
@@ -59,7 +69,7 @@ const YourGuests = () => {
                     },
                 ]}
                 rows={rows}
-            />}
+            /> */}
         </div>
     );
 };

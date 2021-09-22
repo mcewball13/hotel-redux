@@ -15,7 +15,7 @@ export const QUERY_LATE_CHECKOUT = gql`
     }
 `;
 export const QUERY_CURRENT_GUESTS = gql`
-    {
+    query checkedIn {
         guests{
             room_id
             guest{

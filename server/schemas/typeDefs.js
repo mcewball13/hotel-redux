@@ -35,7 +35,7 @@ const typeDefs = gql`
 
   type Query{
     rooms: [Room]
-    guests: [Room]
+    checkedIn: [Room]
     employee: Employee
     room(room_id: Int, name: String): Room
     checkout(test: String!): Checkout

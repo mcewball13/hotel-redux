@@ -17,7 +17,7 @@ const resolvers = {
     },
 
     //query for any guests in rooms and return on the rooms with guests
-    guests: async (parent, args, context) => {
+    checkedIn: async (parent, args, context) => {
       if(context.employee){
         const roomData = await Room.find();
 
