@@ -1,16 +1,9 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_ROOMS_AVAILABLE = gql`
-<<<<<<< HEAD
-    {
-        vacancy{
-            room_id
-        }
-=======
   {
-      vacancy  {
+    vacancy  {
         room_id
->>>>>>> 82d9cf93db16460ea75021849ae979a8d3e92004
     }
   }
 `;
@@ -25,7 +18,7 @@ export const QUERY_CURRENT_GUESTS = gql`
     {
         guests{
             room_id
-            guests{
+            guest{
                 name
                 party
                 nights

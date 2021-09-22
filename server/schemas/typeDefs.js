@@ -21,7 +21,7 @@ const typeDefs = gql`
     _id: ID
     room_id: String
     description: String
-    guests: Guest
+    guest: Guest
   }
 
   type Auth {

@@ -11,7 +11,7 @@ const RoomSchema = new Schema(
       type: String,
       required: true,
     },
-    guests: GuestSchema
+    guest: GuestSchema
   },
   {
     toJSON: {

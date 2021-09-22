@@ -19,7 +19,7 @@ const resolvers = {
     guests: async (parent, args, context) => {
       if(context.employee){
         const roomData = await Room.find();
-        const vacantRoom = roomData.filter(room => room.guests);
+        const vacantRoom = roomData.filter(room => room.guest);
         return vacantRoom;
       }
       throw new AuthenticationError('Must be logged in');
@@ -32,7 +32,7 @@ const resolvers = {
         }
         
       if(name) {
-        return await Room.findOne({'guests.name': name});
+        return await Room.findOne({'guest.name': name});
         }
       }
       throw new AuthenticationError('Must be logged in');
@@ -52,7 +52,7 @@ const resolvers = {
       if(context.employee){
         const roomData = await Room.find();
         console.log(roomData);
-        return roomData.filter(room => !room.guests);
+        return roomData.filter(room => !room.guest);
       }
       throw new AuthenticationError('Must be logged in');
     }
@@ -89,7 +89,7 @@ const resolvers = {
       if(context.employee){
         const roomData = await Room.findOneAndUpdate(
           {room_id},
-          { $set: { guests: input } },
+          { $set: { guest: input } },
           {new: true}
         );
         console.log(roomData);
@@ -102,7 +102,7 @@ const resolvers = {
       if(context.employee){
         const roomData = await Room.findOneAndUpdate(
           {room_id},
-          {$set: {guests: null}},
+          {$set: {guest: null}},
           {new: true}
         )
         return roomData;

@@ -69,20 +69,6 @@ export default function SignupForm() {
             event.stopPropagation();
         }
 
-<<<<<<< HEAD
-      Auth.login(data.addUser.token);
-    } catch (err) {
-      console.error(err);
-      //setShowAlert(true);
-    }
-
-    setUserFormData({
-      username: '',
-      email: '',
-      password: '',
-    });
-  };
-=======
         console.log(event);
         console.log(userFormData);
         try {
@@ -100,7 +86,6 @@ export default function SignupForm() {
             console.error(err);
             setShowAlert(true);
         }
->>>>>>> 82d9cf93db16460ea75021849ae979a8d3e92004
 
         setUserFormData({
             username: "",
@@ -110,20 +95,6 @@ export default function SignupForm() {
     };
 
     return (
-<<<<<<< HEAD
-        <div className="login-signup-plate">
-            <div className="flex-container-row" id="tabs-wrapper">
-                <div className="cursor" id="login-comp-tab" onClick={handlePlateChange}>Login</div>
-                <div className="cursor" id="signup-comp-tab">Sign Up</div>
-            </div>
-            <Grid
-                container
-                spacing={2}
-                justifyContent="center"
-                alignItems="center"
-            >
-                <Grid item xs={12} md={8} 
-=======
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
@@ -134,7 +105,6 @@ export default function SignupForm() {
                         flexDirection: "column",
                         alignItems: "center",
                     }}
->>>>>>> 82d9cf93db16460ea75021849ae979a8d3e92004
                 >
                     <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
                         <LockOutlinedIcon />
@@ -147,13 +117,6 @@ export default function SignupForm() {
                         noValidate
                         sx={{ mt: 3 }}
                     >
-<<<<<<< HEAD
-                        Sign Up
-                    </Button>
-                </Grid>   
-            </Grid>
-        </div>
-=======
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
@@ -217,6 +180,5 @@ export default function SignupForm() {
                 <Copyright sx={{ mt: 5 }} />
             </Container>
         </ThemeProvider>
->>>>>>> 82d9cf93db16460ea75021849ae979a8d3e92004
     );
 }
