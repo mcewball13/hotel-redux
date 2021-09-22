@@ -1,4 +1,10 @@
-import { ACTIVE_LOGIN_PLATE, HEADER_ACTIVE, ACTIVE_LOGIN_PAGE } from "./actions";
+import {
+    ACTIVE_LOGIN_PLATE,
+    HEADER_ACTIVE,
+    ACTIVE_LOGIN_PAGE,
+    GET_ROOM_COUNT,
+    CHECK_IN,
+} from "./actions";
 import { useReducer } from "react";
 
 export const reducer = (state, action) => {
@@ -13,11 +19,21 @@ export const reducer = (state, action) => {
                 ...state,
                 isActive: !state.isActive,
             };
-            case ACTIVE_LOGIN_PAGE:
-                return {
-                    ...state,
-                    isLoginPage: !state.isLoginPage
-                }
+        case ACTIVE_LOGIN_PAGE:
+            return {
+                ...state,
+                isLoginPage: !state.isLoginPage,
+            };
+        case GET_ROOM_COUNT:
+            return {
+                ...state,
+                roomsAvailable: action.roomsAvailable,
+            };
+        case CHECK_IN:
+            return {
+                ...state,
+                checkedInGuests: [...state.checkedInGuests, action.checkedInGuests],
+            };
 
         default:
             return state;
