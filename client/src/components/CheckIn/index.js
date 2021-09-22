@@ -68,16 +68,20 @@ const CheckInForm = () => {
                         balance: formState.balance,
                         party: formState.party,
                         nights: formState.nights,
-                        date: formState.date,
-                    },
+                        check_in: formState.date,
+                    }
                 },
                 
             });
+            console.log(data);
             
-            console.log(`This is a success`)
-            // Auth.login(data.addUser.token);
+            // dispatch({
+            //     type: CHECK_IN_GUEST,
+            //     checkedInGuests: data,
+            // });
+            //Auth.login(data.addUser.token);
         } catch (err) {
-            console.log("Error reached clicked");
+            //console.log("clicked");
             console.error(err);
         }
 
@@ -86,7 +90,7 @@ const CheckInForm = () => {
             balance: "",
             party: "",
             nights: "",
-            date: "",
+            check_in: "",
         });
     };
 

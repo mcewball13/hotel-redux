@@ -43,11 +43,11 @@ const typeDefs = gql`
   }
 
   input checkinInput{
-    balance: Int!
     name: String!,
-    check_in: String!,
-    party: Int!,
-    nights: Int!
+    balance: String!,
+    party: String!,
+    nights: String!,
+    check_in: String!
   }
 
   type Mutation{
