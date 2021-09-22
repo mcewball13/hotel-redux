@@ -13,20 +13,23 @@ import Typography from "@mui/material/Typography";
 const GuestCount = () => {
     const [state, dispatch] = useStoreContext()
     const {roomsAvailable} = state;
-    const { data: vacancy } = useQuery(QUERY_ROOMS_AVAILABLE);
+    const { data: vacancy} = useQuery(QUERY_ROOMS_AVAILABLE);
+    console.log(state)
     
     useEffect(() => {
         if (vacancy) {
+            console.log(vacancy)
+
             dispatch({
                 type: GET_ROOM_COUNT,
-                roomsAvailable: vacancy.length
+                roomsAvailable: vacancy.vacancy.length
             })
         }
     }, [vacancy, dispatch]);
 
     return (
         <>
-            <Card sx={12}>
+            <Card xs={12}>
                 <CardContent sx={{
                     height: "100%"
                 }}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button"
 import { useStoreContext } from "../../utils/GlobalState";
 import { capitalizeFirstLetter } from "../../utils/helpers";
 
@@ -21,6 +22,18 @@ function Nav() {
                     </Link>
                 ))}
             </ul>
+            {Auth.loggedIn() && (
+                <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                                onClick={() => Auth.logout()}
+                                href={'/login'}
+                            >
+                                Log Out
+                            </Button>
+            )}
         </div>
     );
 }

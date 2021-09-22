@@ -28,7 +28,7 @@ const LateCheckout = () => {
                         Late Checkouts:
                     </Typography>
                 </CardContent>
-                <Typography gutterBottom variant="body2" color="text.secondary">
+                <Typography component="div" gutterBottom variant="body2" color="text.secondary">
                     {loading ? <div>Loading...</div> : <h2>{lateCheckouts}</h2>}
                 </Typography>
                 {/* <CardActions>

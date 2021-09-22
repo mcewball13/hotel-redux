@@ -1,11 +1,11 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_ROOMS_AVAILABLE = gql`
-    query getGuestCount($guestCount: Int) {
-        guestCount(guestCount: $guestCount) {
-            guestCount
-        }
+  {
+      vacancy  {
+        room_id
     }
+  }
 `;
 export const QUERY_LATE_CHECKOUT = gql`
     query getLateCheckout($input: Input) {
