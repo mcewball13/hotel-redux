@@ -1,7 +1,7 @@
 import React from "react";
 import { useStoreContext } from "../../utils/GlobalState";
 import { HEADER_ACTIVE } from "../../utils/actions";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "../../pages/Home";
 import Header from "../Header";
 import Login from "../../pages/Login";
@@ -16,7 +16,7 @@ const CompSwitcher = () => {
 
     return (
         <Router>
-            {Auth.loggedIn() ? <Header /> : <Redirect push to="/login" />}
+            {Auth.loggedIn() && <Header />}
             <div className={`${isActive ? "shift-right" : "normal"}`}>
                 <Switch>
                     <Route exact path="/login" component={Login}></Route>

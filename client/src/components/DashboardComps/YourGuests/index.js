@@ -11,7 +11,7 @@ import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 
 const YourGuests = () => {
     const {loading, data} = useQuery(QUERY_CURRENT_GUESTS);
-    const guests = data?.guests || []
+    const guests = data?.guest || []
     
     const rows = guests.map((guest) => ({
         name: guest.name,
