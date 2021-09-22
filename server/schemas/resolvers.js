@@ -38,8 +38,8 @@ const resolvers = {
     vacancy: async (parent, args, context) => {
       if(context.employee){
         const roomData = await Room.find();
-        const vacantRoom = roomData.filter(room => !room.guests);
-        return vacantRoom;
+        console.log(roomData);
+        return roomData.filter(room => !room.guests);
       }
       throw new AuthenticationError('Must be logged in');
     }
@@ -47,6 +47,7 @@ const resolvers = {
   Mutation: {
     addUser: async (parents, args) => {
       const employee = await Employee.create(args);
+      console.log(employee);
       const token = signToken(employee);
 
       return { token, employee};
