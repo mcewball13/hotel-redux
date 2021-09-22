@@ -4,7 +4,7 @@ const GuestSchema = require('./Guest');
 const RoomSchema = new Schema(
   {
     room_id:{
-      type: String,
+      type: Number,
       required: true,
     },
     description: {
