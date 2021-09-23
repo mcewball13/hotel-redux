@@ -41,7 +41,7 @@ export const ADD_USER = gql`
     }
 `;
 export const CHECK_IN_GUEST = gql`
-mutation check_in($room_id: String!, $input: checkinInput!) {
+mutation check_in($room_id: Int!, $input: checkinInput!) {
   check_in(room_id: $room_id, input: $input) {
     room_id
       guest {

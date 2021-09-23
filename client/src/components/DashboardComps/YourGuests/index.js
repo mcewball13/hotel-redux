@@ -26,7 +26,7 @@ const YourGuests = () => {
       }
       // dispatch()
     }, [dispatch, data])
-    if (loading) return null
+    if (loading) return <div>Loading...</div>
   
     // console.log(`this is checkedIn ${data.checkedIn[0].guest.name}`)
     

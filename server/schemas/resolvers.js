@@ -93,12 +93,13 @@ const resolvers = {
     //create and check in a guest into a room
     check_in: async (parent, {room_id, input}, context) => {
       if(context.employee){
+        console.log('You made it')
         const roomData = await Room.findOneAndUpdate(
           {room_id},
           { $set: { guest: input } },
           {new: true}
         );
-        console.log(roomData);
+        
         return roomData;
       }
       throw new AuthenticationError('Must be logged in');

@@ -20,7 +20,7 @@ const CheckInForm = () => {
         balance: "",
         party: "",
         nights: "",
-        date: "",
+        check_in: "",
     });
 
     // useEffect(() => {
@@ -40,9 +40,8 @@ const CheckInForm = () => {
     };
 
     const handleInputChange = (event) => {
-        
         const { name, value } = event.target;
-        console.log(name, value)
+        console.log(name, value);
         setFormState({ ...formState, [name]: value });
         console.log(formState);
     };
@@ -50,6 +49,7 @@ const CheckInForm = () => {
     // Hand form submit function
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        console.log("clicked");
 
         // check if form has everything
         const form = event.currentTarget;
@@ -57,24 +57,18 @@ const CheckInForm = () => {
             event.preventDefault();
             event.stopPropagation();
         }
-        console.log(`This is Form State ${formState}`);
+        console.log(`This is Form State ${JSON.stringify(formState)}`);
 
         try {
-            const {data} = await check_in({
+            console.log(formState);
+            await check_in({
                 variables: {
-                    room_id: '2',
-                    input: {
-                        name: formState.name,
-                        balance: formState.balance,
-                        party: formState.party,
-                        nights: formState.nights,
-                        check_in: formState.date,
-                    }
+                    room_id: 2,
+                    input: formState,
                 },
-                
             });
-            console.log(data);
-            
+            // console.log(data);
+
             // dispatch({
             //     type: CHECK_IN_GUEST,
             //     checkedInGuests: data,
@@ -94,7 +88,7 @@ const CheckInForm = () => {
         });
     };
 
-    console.log(selectedDate);
+    // console.log(selectedDate);
     return (
         <Grid
             alignItems="center"
@@ -160,7 +154,7 @@ const CheckInForm = () => {
                         required
                         type="date"
                         id="date"
-                        name="date"
+                        name="check_in"
                         label="check-in"
                         variant="standard"
                         defaultValue={selectedDate}
