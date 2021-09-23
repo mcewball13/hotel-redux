@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery, useLazyQuery } from "@apollo/client";
 import { QUERY_CURRENT_GUESTS } from "../../../utils/queries";
 import {useStoreContext} from '../../../utils/GlobalState'
 import {CHECK_IN} from '../../../utils/actions'
@@ -14,9 +14,8 @@ import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 const YourGuests = () => {
   const [state, dispatch] = useStoreContext()
   const {checkedInGuests} = state;
-    const {data} = useQuery(QUERY_CURRENT_GUESTS);
+    const {loading, data} = useQuery(QUERY_CURRENT_GUESTS);
     // console.log(`this is data ${JSON.stringify(data.checkedIn[0].guest.name)}`)
-    
     
     useEffect(() => {
       if (data) {
@@ -24,11 +23,12 @@ const YourGuests = () => {
           type: CHECK_IN,
           checkedInGuests: data,
         })
-    }
-        // dispatch()
+      }
+      // dispatch()
     }, [dispatch, data])
+    if (loading) return null
   
-    console.log(`this is checkedIn ${data.checkedIn[0].guest.name}`)
+    // console.log(`this is checkedIn ${data.checkedIn[0].guest.name}`)
     
     let guestList = data.checkedIn
   
@@ -46,7 +46,7 @@ const YourGuests = () => {
 
     return (
         <div style={{ height: 250 }}>
-            <DataGrid
+            {<DataGrid
                 columns={[
                     { field: "name", headerName: "Name", width: 150 },
                     { field: "party", headerName: "Party", width: 150 },
@@ -70,7 +70,7 @@ const YourGuests = () => {
                     },
                 ]}
                 rows={rows}
-            />
+            />}
         </div>
     );
 };
