@@ -41,9 +41,9 @@ const CheckInForm = () => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        console.log(name, value);
+        //console.log(name, value);
         setFormState({ ...formState, [name]: value });
-        console.log(formState);
+        //console.log(formState);
     };
 
     // Hand form submit function
@@ -70,12 +70,6 @@ const CheckInForm = () => {
                 },
             });
             console.log(data);
-
-            // dispatch({
-            //     type: CHECK_IN_GUEST,
-            //     checkedInGuests: data,
-            // });
-            //Auth.login(data.addUser.token);
         } catch (err) {
             //console.log("clicked");
             console.error(err);

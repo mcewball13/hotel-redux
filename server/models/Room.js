@@ -5,6 +5,7 @@ const RoomSchema = new Schema(
   {
     room_id:{
       type: Number,
+      unique:true,
       required: true,
     },
     description: {
