@@ -8,35 +8,55 @@ import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
-const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-}));
+// const Item = styled(Paper)(({ theme }) => ({
+//     ...theme.typography.body2,
+//     padding: theme.spacing(2),
+//     textAlign: "center",
+//     color: theme.palette.text.secondary,
+// }));
+
+const theme = createTheme();
 
 const Home = () => {
     return (
-        <Container>
-            <Grid container spacing={1} rowSpacing={1}>
-                <Grid item xs={12} md={3}>
-                    <GuestCount/>
-                </Grid>
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="lg">
+                <CssBaseline />
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                    }}
+                >
+                    <Typography component="h1" variant="h5">
+                        Dashboard
+                    </Typography>
+                    
+                    <Grid container spacing={4}>
+                        <Grid item xs={12} md={3}>
+                            <GuestCount />
+                        </Grid>
 
-                <Grid item xs={12} md={6}>
-                    <LateCheckout />
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <CurrentDateTime/>
-                </Grid>
-            </Grid>
-            <Grid container spacing={1}>
-                <Grid item md={12}>
-                    <YourGuests/>
-                </Grid>
-            </Grid>
-        </Container>
+                        <Grid item xs={12} md={6}>
+                            <LateCheckout />
+                        </Grid>
+                        <Grid item xs={12} md={3}>
+                            <CurrentDateTime />
+                        </Grid>
+                         <Grid item xs={12} md={12}>
+                            <YourGuests />
+                        </Grid>
+                    </Grid>
+                </Box>
+            </Container>
+        </ThemeProvider>
     );
 };
 
