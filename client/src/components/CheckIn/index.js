@@ -20,7 +20,7 @@ const CheckInForm = () => {
         balance: "",
         party: "",
         nights: "",
-        date: "",
+        check_in: "",
     });
 
     // useEffect(() => {
@@ -63,13 +63,9 @@ const CheckInForm = () => {
             console.log(formState);
             const data = await check_in({
                 variables: {
-                    room_id: 2,
+                    room_id: 3,
                     input: {
-                        name: formState.name,
-                        balance:formState.balance,
-                        party: formState.party,
-                        nights: formState.nights,
-                        check_in: formState.date,
+                        ...formState
                     },
                 },
             });
@@ -160,7 +156,7 @@ const CheckInForm = () => {
                         required
                         type="date"
                         id="date"
-                        name="date"
+                        name="check_in"
                         label="check-in"
                         variant="standard"
                         defaultValue={selectedDate}
