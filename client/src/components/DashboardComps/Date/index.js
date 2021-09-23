@@ -10,13 +10,7 @@ import Typography from "@mui/material/Typography";
 const CurrentDateTime = () => {
     return (
         <>
-            <Card
-                xs={12}
-                sx={{
-                    height: "100%",
-                }}
-            >
-                <CardContent>
+            
                     <Typography gutterBottom variant="h5" component="div">
                         Date and Time:
                     </Typography>
@@ -27,8 +21,6 @@ const CurrentDateTime = () => {
                     >
                         {dateFormat(Date.now())}
                     </Typography>
-                </CardContent>
-            </Card>
         </>
     );
 };

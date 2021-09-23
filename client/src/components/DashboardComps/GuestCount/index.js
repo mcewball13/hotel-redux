@@ -29,15 +29,9 @@ const GuestCount = () => {
 
     return (
         <>
-            <Card xs={12}>
-                <CardContent sx={{
-                    height: "100%"
-                }}>
                     <Typography gutterBottom variant="h5" component="div">
                         Room Availability: {<h2>{roomsAvailable}</h2>}
                     </Typography>
-                </CardContent>
-            </Card>
         </>
     );
 };

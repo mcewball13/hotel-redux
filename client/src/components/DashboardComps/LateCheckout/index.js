@@ -17,25 +17,18 @@ const LateCheckout = () => {
     }, [lateCheckouts]);
     return (
         <>
-            <Card
-                xs={12}
-                sx={{
-                    height: "100%",
-                }}
+            <Typography gutterBottom variant="h5" component="div">
+                Late Checkouts:
+            </Typography>
+
+            <Typography
+                component="div"
+                gutterBottom
+                variant="body2"
+                color="text.secondary"
             >
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        Late Checkouts:
-                    </Typography>
-                </CardContent>
-                <Typography component="div" gutterBottom variant="body2" color="text.secondary">
-                    {loading ? <div>Loading...</div> : <h2>{lateCheckouts}</h2>}
-                </Typography>
-                {/* <CardActions>
-                    <Button size="small">Share</Button>
-                    <Button size="small">Learn More</Button>
-                </CardActions> */}
-            </Card>
+                {loading ? <div>Loading...</div> : <h2>{lateCheckouts}</h2>}
+            </Typography>
         </>
     );
 };
