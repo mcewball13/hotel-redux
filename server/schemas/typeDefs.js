@@ -44,9 +44,9 @@ const typeDefs = gql`
 
   input checkinInput{
     name: String!,
-    balance: Int!,
-    party: Int!,
-    nights: Int!,
+    balance: String!,
+    party: String!,
+    nights: String!,
     check_in: String!
   }
 

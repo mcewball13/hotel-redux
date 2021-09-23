@@ -20,7 +20,7 @@ const CheckInForm = () => {
         balance: "",
         party: "",
         nights: "",
-        check_in: "",
+        date: "",
     });
 
     // useEffect(() => {
@@ -57,17 +57,23 @@ const CheckInForm = () => {
             event.preventDefault();
             event.stopPropagation();
         }
-        console.log(`This is Form State ${JSON.stringify(formState)}`);
+        console.log(`This is Form State ${formState}`);
 
         try {
             console.log(formState);
-            await check_in({
+            const data = await check_in({
                 variables: {
                     room_id: 2,
-                    input: formState,
+                    input: {
+                        name: formState.name,
+                        balance:formState.balance,
+                        party: formState.party,
+                        nights: formState.nights,
+                        check_in: formState.date,
+                    },
                 },
             });
-            // console.log(data);
+            console.log(data);
 
             // dispatch({
             //     type: CHECK_IN_GUEST,
@@ -154,7 +160,7 @@ const CheckInForm = () => {
                         required
                         type="date"
                         id="date"
-                        name="check_in"
+                        name="date"
                         label="check-in"
                         variant="standard"
                         defaultValue={selectedDate}
