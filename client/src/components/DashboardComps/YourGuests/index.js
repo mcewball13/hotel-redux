@@ -14,38 +14,39 @@ import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 const YourGuests = () => {
   const [state, dispatch] = useStoreContext()
   const {checkedInGuests} = state;
-    const {data: checkedIn} = useQuery(QUERY_CURRENT_GUESTS);
+    const {data} = useQuery(QUERY_CURRENT_GUESTS);
     // console.log(`this is data ${JSON.stringify(data.checkedIn[0].guest.name)}`)
     
     
     useEffect(() => {
-      if (checkedIn) {
+      if (data) {
         dispatch({
           type: CHECK_IN,
-          checkedInGuests: checkedIn,
+          checkedInGuests: data,
         })
     }
         // dispatch()
-    }, [dispatch, checkedIn])
-  const guestList = checkedInGuests
+    }, [dispatch, data])
   
-  guestList.forEach((guest) => {
-     console.log(guest)
-   })
+    console.log(`this is checkedIn ${data.checkedIn[0].guest.name}`)
+    
+    let guestList = data.checkedIn
+  
 
-  //  const rows = guests.map((guest, i) => ({
-  //       id: i,
-  //       name: guest.name,
-  //       party: guest.party,
-  //       nights: guest.nights,
-  //       check_in: guest.check_in,
-  //       balance: guest.balance,
-  //   }));
+   const rows = guestList.map((guest, i) => ({
+        id: i,
+        name: guest.guest.name,
+        party: guest.guest.party,
+        nights: guest.guest.nights,
+        check_in: guest.guest.check_in,
+        balance: guest.guest.balance,
+    }));
+    console.log(rows)
     // const columns:
 
     return (
         <div style={{ height: 250 }}>
-            {/* <DataGrid
+            <DataGrid
                 columns={[
                     { field: "name", headerName: "Name", width: 150 },
                     { field: "party", headerName: "Party", width: 150 },
@@ -69,7 +70,7 @@ const YourGuests = () => {
                     },
                 ]}
                 rows={rows}
-            /> */}
+            />
         </div>
     );
 };
