@@ -17,14 +17,14 @@ const resolvers = {
     },
 
     //query for any guests in rooms and return on the rooms with guests
-    guests: async (parent, args, context) => {
-      if(context.employee){
+    checkedIn: async (parent, args, context) => {
+      // if(context.employee){
         const roomData = await Room.find();
 
         const vacantRoom = roomData.filter(room => room.guest);
 
         return vacantRoom;
-      }
+      // }
       throw new AuthenticationError('Must be logged in');
     },
     //query for guest in a room or room_id

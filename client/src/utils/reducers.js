@@ -32,7 +32,7 @@ export const reducer = (state, action) => {
         case CHECK_IN:
             return {
                 ...state,
-                checkedInGuests: [ ...state.checkedInGuests, action.checkedInGuests],
+                checkedInGuests: [action.checkedInGuests],
             };
 
         default:
