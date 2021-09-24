@@ -26,7 +26,7 @@ const CheckInForm = () => {
         balance: "",
         party: "",
         nights: "",
-        date: "",
+        check_in: "",
     });
 
     // useEffect(() => {
@@ -47,9 +47,9 @@ const CheckInForm = () => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        console.log(name, value);
+        //console.log(name, value);
         setFormState({ ...formState, [name]: value });
-        console.log(formState);
+        //console.log(formState);
     };
 
     // Hand form submit function
@@ -69,8 +69,9 @@ const CheckInForm = () => {
             console.log(formState);
             const data = await check_in({
                 variables: {
-                    room_id: 2,
+                    room_id: 3,
                     input: {
+
                         name: formState.name,
                         balance: formState.balance,
                         party: formState.party,
@@ -80,12 +81,6 @@ const CheckInForm = () => {
                 },
             });
             console.log(data);
-
-            // dispatch({
-            //     type: CHECK_IN_GUEST,
-            //     checkedInGuests: data,
-            // });
-            //Auth.login(data.addUser.token);
         } catch (err) {
             //console.log("clicked");
             console.error(err);
@@ -113,6 +108,7 @@ const CheckInForm = () => {
                         alignItems: "center",
                     }}
                 >
+
                     <Typography component="h1" variant="h5">
                         Check In
                     </Typography>

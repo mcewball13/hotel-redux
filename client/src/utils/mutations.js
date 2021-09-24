@@ -55,21 +55,6 @@ mutation check_in($room_id: Int!, $input: checkinInput!) {
   }
 `;
 
-export const CHECK_IN = gql`
-  mutation check_in($room_id: Int!, $input: checkinInput!) {
-      check_in(room_id: $room_id, input: $input){
-        room_id
-        guest{
-          name
-          party
-          nights
-          check_in
-          balance
-        }
-      }
-    }
-`;
-
 export const CHECK_OUT = gql`
   mutation check_out(
     $room_id: Int!, 
@@ -81,4 +66,20 @@ export const CHECK_OUT = gql`
         }
       }
     }
+`;
+
+export const ADD_ROOM = gql`
+  mutation addRoom($room_id: Int!, $description: String!) {
+    addRoom(room_id: $room_id, description: $description){
+      room_id
+    }
+  }
+`;
+
+export const DELETE_ROOM = gql`
+  mutation delRoom($room_id: Int!) {
+    delRoom(room_id: $room_id){
+      room_id
+    }
+  }
 `;

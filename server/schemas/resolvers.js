@@ -115,6 +115,20 @@ const resolvers = {
         return roomData;
       }
       throw new AuthenticationError('Must be logged in');
+    },
+    addRoom: async (parent, args, context)=>{
+      if(context.employee){
+        const roomData = await Room.create(args);
+        return roomData;
+      }
+      throw new AuthenticationError('Must be logged in');
+    },
+    delRoom: async (parent, {room_id}, context) => {
+      if(context.employee){
+        const roomData = await Room.findOneAndDelete({room_id});
+        return roomData;
+      }
+      throw new AuthenticationError('Must be logged in');
     }
       
   }
