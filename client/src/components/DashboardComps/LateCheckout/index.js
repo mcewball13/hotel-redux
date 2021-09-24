@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 
 const LateCheckout = () => {
     const { loading, data } = useQuery(QUERY_LATE_CHECKOUT);
-    const {lateCheckouts} = data
+    const lateCheckouts = data;
 
     useEffect(() => {
         

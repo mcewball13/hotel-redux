@@ -4,6 +4,7 @@ export const QUERY_ROOMS_AVAILABLE = gql`
   {
     vacancy  {
         room_id
+        description
     }
   }
 `;
