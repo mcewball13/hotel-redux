@@ -7,6 +7,7 @@ import Home from "../../pages/Home";
 import Login from "../../pages/Login";
 import SignUp from "../../pages/SignUp";
 import CheckInForm from "../CheckIn";
+import Header from '../Header'
 import Auth from "../../utils/auth"
 
 const CompSwitcher = () => {
@@ -15,18 +16,16 @@ const CompSwitcher = () => {
     const { isActive, isLoginPage } = state;
 
     return (
+        <>
         <Router>
                 <Switch>
                     <Route exact path="/login" component={Login}></Route>
                     <Route exact path="/signup" component={SignUp}></Route>
                     <Route exact path="/" component={Home}></Route>
-                    <Route
-                        exact
-                        path="/check-in"
-                        component={CheckInForm}
-                    ></Route>
+
                 </Switch>
         </Router>
+        </>
     );
 };
 export default CompSwitcher;

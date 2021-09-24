@@ -3,28 +3,19 @@ import Auth from "../../utils/auth";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import ListSubheader from "@mui/material/ListSubheader";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PeopleIcon from "@mui/icons-material/People";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import LayersIcon from "@mui/icons-material/Layers";
-import AssignmentIcon from "@mui/icons-material/Assignment";
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Link } from "react-router-dom";
 import { useStoreContext } from "../../utils/GlobalState";
-import { capitalizeFirstLetter } from "../../utils/helpers";
 
 function Nav() {
     const [state, dispatch] = useStoreContext();
-    const { currentTab } = state;
-
     return (
         <div>
             <Link to="/">
-                <ListItem button>
+                <ListItem button onClick={() => dispatch({currentTab: "dashboard"})}>
                     <ListItemIcon>
                         <DashboardIcon />
                     </ListItemIcon>
@@ -32,26 +23,26 @@ function Nav() {
                 </ListItem>
             </Link>
 
-            <Link to="/check-in">
-                <ListItem button>
+            
+                <ListItem button onClick={() => dispatch({currentTab: "check-in"})}>
                     <ListItemIcon>
                         <ArrowForwardOutlinedIcon />
                     </ListItemIcon>
                     <ListItemText primary="Check In" />
                 </ListItem>
-            </Link>
+           
 
-            <Link to="/check-out">
-                <ListItem button>
+            
+                <ListItem button onClick={() => dispatch({currentTab: "check-out"})}>
                     <ListItemIcon>
                         <ArrowBackOutlinedIcon />
                     </ListItemIcon>
                     <ListItemText primary="Check Out" />
                 </ListItem>
-            </Link>
+           
 
             {Auth.loggedIn() && (
-                <ListItem button onClick={() => Auth.logout()} href={"/login"}>
+                <ListItem button onClick={() => Auth.logout()}>
                     <ListItemIcon>
                         <LogoutOutlinedIcon />
                     </ListItemIcon>

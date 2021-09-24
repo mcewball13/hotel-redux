@@ -9,7 +9,7 @@ const StoreProvider = ({ value = [], ...props }) => {
     isActive: false,
     isLoginPlate: true,
     isLoginPage: false,
-    currentTab: [],
+    currentTab: "check-in",
     roomsAvailable: "",
     checkedInGuests: []
   })

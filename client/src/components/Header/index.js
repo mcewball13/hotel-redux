@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from "react";
-import Nav from "../components/Nav";
-import Dashboard from "../components/DashboardComps";
-import CheckInForm from "../components/CheckIn";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { useQuery } from "@apollo/client";
+import Nav from "../../components/Nav";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
+import Badge from "@mui/material/Badge";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { useStoreContext } from "../utils/GlobalState";
-import auth from "../utils/auth";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 
 function Copyright(props) {
     return (
@@ -84,33 +86,14 @@ const Drawer = styled(MuiDrawer, {
 
 const mdTheme = createTheme();
 
-const Home = () => {
-
-    const [state] = useStoreContext();
+const Header = () => {
     const [open, setOpen] = useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
     };
-    const { currentTab } = state;
-    console.log(`This is current Tab ${currentTab}`)
-
-    const renderComp = () => {
-        switch (currentTab) {
-            case "check-in":
-                return <CheckInForm />;
-            // case "check-out":
-            //     return <CheckOutForm />;
-            case 'dashboard':
-                return <Dashboard />;
-
-            default:
-                break;
-        }
-    };
 
     return (
         <ThemeProvider theme={mdTheme}>
-            <Router>
                 <Box sx={{ display: "flex" }}>
                     <CssBaseline />
                     <AppBar position="absolute" open={open}>
@@ -172,13 +155,10 @@ const Home = () => {
                         }}
                     >
                         <Toolbar />
-                        {/* <Dashboard /> */}
-                        {renderComp(currentTab)}
                     </Box>
                 </Box>
-            </Router>
         </ThemeProvider>
     );
 };
 
-export default Home;
+export default Header;
