@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useStoreContext } from "../../../utils/GlobalState";
 import { MODAL_PROPS } from "../../../utils/actions";
 import Dialog from "@mui/material/Dialog";

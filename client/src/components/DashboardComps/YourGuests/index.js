@@ -1,16 +1,9 @@
-import React, { useEffect, Fragment, useState } from "react";
-import { useQuery, useLazyQuery } from "@apollo/client";
+import React, { useEffect, Fragment} from "react";
+import { useQuery} from "@apollo/client";
 import { QUERY_CURRENT_GUESTS } from "../../../utils/queries";
 import { useStoreContext } from "../../../utils/GlobalState";
 import { CHECK_IN, MODAL_PROPS } from "../../../utils/actions";
 import CheckOutModal from "./CheckoutModal";
-import Grid from "@mui/material/Grid";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Table from "@mui/material/Table";
@@ -22,7 +15,7 @@ import TableRow from "@mui/material/TableRow";
 const YourGuests = () => {
 
     const [state, dispatch] = useStoreContext();
-    const { checkedInGuests, modalOpen } = state;
+    const { modalOpen } = state;
     // console.log(`this is data ${JSON.stringify(data.checkedIn[0].guest.name)}`)
     const { loading, data } = useQuery(QUERY_CURRENT_GUESTS);
 
