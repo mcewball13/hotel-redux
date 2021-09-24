@@ -91,6 +91,7 @@ const Home = () => {
     const toggleDrawer = () => {
         setOpen(!open);
     };
+    
     const { currentTab } = state;
     console.log(`This is current Tab ${currentTab}`)
 

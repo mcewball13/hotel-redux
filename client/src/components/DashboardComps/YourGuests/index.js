@@ -1,24 +1,28 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import { QUERY_CURRENT_GUESTS } from "../../../utils/queries";
 import { useStoreContext } from "../../../utils/GlobalState";
-import { CHECK_IN } from "../../../utils/actions";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import { CHECK_IN, MODAL_PROPS } from "../../../utils/actions";
+import CheckOutModal from "./CheckoutModal";
+import Grid from "@mui/material/Grid";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 
 const YourGuests = () => {
+
     const [state, dispatch] = useStoreContext();
-    const { checkedInGuests } = state;
+    const { checkedInGuests, modalOpen } = state;
     // console.log(`this is data ${JSON.stringify(data.checkedIn[0].guest.name)}`)
     const { loading, data } = useQuery(QUERY_CURRENT_GUESTS);
 
@@ -31,6 +35,20 @@ const YourGuests = () => {
         }
         // dispatch()
     }, [dispatch, data]);
+    
+    const handleClickOpen = room => {
+        dispatch({
+            type: MODAL_PROPS,
+            modalOpen: true,
+            modalProps: {
+                room_id: room.room_id,
+                name: room.guest.name,
+                balance: room.guest.balance
+            }
+        })
+    };
+    
+
     if (loading) return <div>Loading...</div>;
 
     // console.log(`this is checkedIn ${data.checkedIn[0].guest.name}`)
@@ -61,33 +79,44 @@ const YourGuests = () => {
             <Table size="small">
                 <TableHead>
                     <TableRow>
+                        <TableCell>Room Number</TableCell>
                         <TableCell>Name</TableCell>
                         <TableCell>Nights</TableCell>
                         <TableCell>Party</TableCell>
                         <TableCell>Checked In</TableCell>
-                        <TableCell align="right">Balance</TableCell>
+                        <TableCell align="center">Balance</TableCell>
+                        <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {roomList.map((room, i) => (
                         <TableRow key={i}>
+                            <TableCell>{room.room_id}</TableCell>
                             <TableCell>{room.guest.name}</TableCell>
                             <TableCell>{room.guest.nights}</TableCell>
                             <TableCell>{room.guest.party}</TableCell>
                             <TableCell>{room.guest.check_in}</TableCell>
+
                             <TableCell align="center">{`$${room.guest.balance}`}</TableCell>
-                            <Button
-                            variant="contained"
-                            color="primary"
-                            size="small"
-                            style={{ marginLeft: 16 }}
-                        >
-                            Check Out
-                        </Button>
+                            <TableCell>
+                                <Button
+                                    id={room.room_id}
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    style={{ marginLeft: 16 }}
+                                    onClick={(event) =>
+                                        handleClickOpen(room)
+                                    }
+                                >
+                                    Check Out
+                                </Button>
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
+            {modalOpen && <CheckOutModal/>}
         </Fragment>
 
         // old page code
@@ -103,14 +132,14 @@ const YourGuests = () => {
         //             width: 150,
         //             headerName: "Pay Now",
         //             renderCell: () => (
-                        // <Button
-                        //     variant="contained"
-                        //     color="primary"
-                        //     size="small"
-                        //     style={{ marginLeft: 16 }}
-                        // >
-                        //     Pay Now
-                        // </Button>
+        // <Button
+        //     variant="contained"
+        //     color="primary"
+        //     size="small"
+        //     style={{ marginLeft: 16 }}
+        // >
+        //     Pay Now
+        // </Button>
         //             ),
         //         },
         //     ]}

@@ -11,9 +11,6 @@ import Header from '../Header'
 import Auth from "../../utils/auth"
 
 const CompSwitcher = () => {
-    const [state, dispatch] = useStoreContext();
-
-    const { isActive, isLoginPage } = state;
 
     return (
         <>

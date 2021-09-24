@@ -9,13 +9,21 @@ import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Link } from "react-router-dom";
 import { useStoreContext } from "../../utils/GlobalState";
+import {CURRENT_TAB} from '../../utils/actions'
 
 function Nav() {
-    const [state, dispatch] = useStoreContext();
+    const [, dispatch] = useStoreContext();
+
+    const handleCompChange = (tab) => {
+     dispatch({
+        type: CURRENT_TAB,
+        currentTab: tab
+     })   
+    }
     return (
         <div>
             <Link to="/">
-                <ListItem button onClick={() => dispatch({currentTab: "dashboard"})}>
+                <ListItem button onClick={() => handleCompChange("dashboard")}>
                     <ListItemIcon>
                         <DashboardIcon />
                     </ListItemIcon>
@@ -24,20 +32,11 @@ function Nav() {
             </Link>
 
             
-                <ListItem button onClick={() => dispatch({currentTab: "check-in"})}>
+                <ListItem button onClick={() => handleCompChange("check-in")}>
                     <ListItemIcon>
                         <ArrowForwardOutlinedIcon />
                     </ListItemIcon>
                     <ListItemText primary="Check In" />
-                </ListItem>
-           
-
-            
-                <ListItem button onClick={() => dispatch({currentTab: "check-out"})}>
-                    <ListItemIcon>
-                        <ArrowBackOutlinedIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Check Out" />
                 </ListItem>
            
 
