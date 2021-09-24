@@ -6,9 +6,6 @@ const { Provider } = StoreContext
 
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useUiReducer({
-    isActive: false,
-    isLoginPlate: true,
-    isLoginPage: false,
     currentTab: "dashboard",
     roomsAvailable: "",
     checkedInGuests: [],

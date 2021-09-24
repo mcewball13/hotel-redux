@@ -1,24 +1,22 @@
 import "date-fns";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useMutation } from "@apollo/client";
-import { useStoreContext } from "../../utils/GlobalState";
 import { CHECK_IN_GUEST } from "../../utils/mutations";
-import { CHECK_IN } from "../../utils/actions";
+
 import Container from "@mui/material/Container";
-import Paper from "@mui/material/Paper";
+
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import Auth from "../../utils/auth";
+
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
 
 const CheckInForm = () => {
-    const [state, dispatch] = useStoreContext();
     const [check_in] = useMutation(CHECK_IN_GUEST);
 
     const [formState, setFormState] = useState({
@@ -29,16 +27,7 @@ const CheckInForm = () => {
         check_in: "",
     });
 
-    // useEffect(() => {
-    //     if (formState) {
-    //         dispatch({
-    //             type: CHECK_IN,
-    //             checkedInGuests: formState,
-    //         });
-    //     }
-    //     console.log(`This is the check_in ${check_in}`);
-    // }, [formState, dispatch]);
-
+   
     // local state for date picker
     const [selectedDate, setSelectedDate] = useState(new Date());
     const handleDateChange = (e) => {

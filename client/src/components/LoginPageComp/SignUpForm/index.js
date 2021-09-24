@@ -10,7 +10,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useStoreContext } from "../../../utils/GlobalState";
 import { ADD_USER } from "../../../utils/mutations";
 import Auth from "../../../utils/auth";
 import { useMutation } from "@apollo/client";
@@ -36,7 +35,6 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignupForm() {
-    const [state, dispatch] = useStoreContext();
 
     // set initial form state
     const [userFormData, setUserFormData] = useState({
@@ -45,9 +43,8 @@ export default function SignupForm() {
         password: "",
     });
     // set state for form validation
-    const [validated] = useState(false);
     // set state for alert
-    const [showAlert, setShowAlert] = useState(false);
+    const [, setShowAlert] = useState(false);
 
     const [addUser] = useMutation(ADD_USER);
 
