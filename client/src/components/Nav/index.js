@@ -1,38 +1,52 @@
 import React, { useEffect, useState } from "react";
 import Auth from "../../utils/auth";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Link } from "react-router-dom";
-import Button from "@mui/material/Button"
 import { useStoreContext } from "../../utils/GlobalState";
-import { capitalizeFirstLetter } from "../../utils/helpers";
+import {CURRENT_TAB} from '../../utils/actions'
 
 function Nav() {
-    const tabs = ["check-in", "check-out"];
-    const [state, dispatch] = useStoreContext();
-    const { currentTab } = state;
+    const [, dispatch] = useStoreContext();
 
+    const handleCompChange = (tab) => {
+     dispatch({
+        type: CURRENT_TAB,
+        currentTab: tab
+     })   
+    }
     return (
         <div>
             <Link to="/">
-                <h1>Hotel Redux</h1>
+                <ListItem button onClick={() => handleCompChange("dashboard")}>
+                    <ListItemIcon>
+                        <DashboardIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard" />
+                </ListItem>
             </Link>
-            <ul className="nav-links-wrapper">
-                {tabs.map((tab) => (
-                    <Link to={`/${tab}`}>
-                        <li>{capitalizeFirstLetter(tab)}</li>
-                    </Link>
-                ))}
-            </ul>
+
+            
+                <ListItem button onClick={() => handleCompChange("check-in")}>
+                    <ListItemIcon>
+                        <ArrowForwardOutlinedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Check In" />
+                </ListItem>
+           
+
             {Auth.loggedIn() && (
-                <Button
-                                type="submit"
-                                fullWidth
-                                // variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                                onClick={() => Auth.logout()}
-                                href={'/login'}
-                            >
-                                Log Out
-                            </Button>
+                <ListItem button onClick={() => Auth.logout()}>
+                    <ListItemIcon>
+                        <LogoutOutlinedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Log Out" />
+                </ListItem>
             )}
         </div>
     );

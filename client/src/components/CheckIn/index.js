@@ -1,5 +1,6 @@
 import "date-fns";
 import React, { useState, useEffect } from "react";
+import CssBaseline from "@mui/material/CssBaseline";
 import { useMutation } from "@apollo/client";
 import { useStoreContext } from "../../utils/GlobalState";
 import { CHECK_IN_GUEST } from "../../utils/mutations";
@@ -7,9 +8,14 @@ import { CHECK_IN } from "../../utils/actions";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Auth from "../../utils/auth";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme();
 
 const CheckInForm = () => {
     const [state, dispatch] = useStoreContext();
@@ -65,7 +71,12 @@ const CheckInForm = () => {
                 variables: {
                     room_id: 3,
                     input: {
-                        ...formState
+
+                        name: formState.name,
+                        balance: formState.balance,
+                        party: formState.party,
+                        nights: formState.nights,
+                        check_in: formState.date,
                     },
                 },
             });
@@ -86,88 +97,103 @@ const CheckInForm = () => {
 
     // console.log(selectedDate);
     return (
-        <Grid
-            alignItems="center"
-            justifyContent="center"
-            container
-            component="form"
-            xs={12}
-            sx={{
-                "& .MuiTextField-root": { m: 1 },
-                minHeight: "100vh",
-            }}
-            noValidate
-            autoComplete="off"
-            onSubmit={handleFormSubmit}
-        >
-            <Grid item xs={10} md={6} align="center">
-                <Paper
-                    xs={8}
-                    spacing={16}
-                    elevation={4}
-                    sx={{ borderRadius: 4, p: 4 }}
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                    }}
                 >
-                    <h2>Check in</h2>
 
-                    <TextField
-                        fullWidth
-                        required
-                        id="name"
-                        name="name"
-                        label="Name"
-                        variant="standard"
-                        onBlur={handleInputChange}
-                    />
-                    <TextField
-                        fullWidth
-                        required
-                        id="balance"
-                        name="balance"
-                        label="Balance"
-                        variant="standard"
-                        onBlur={handleInputChange}
-                    />
-                    <TextField
-                        fullWidth
-                        required
-                        id="partyNum"
-                        name="party"
-                        label="Number in Party"
-                        variant="standard"
-                        onBlur={handleInputChange}
-                    />
-                    <TextField
-                        fullWidth
-                        required
-                        id="nightsNum"
-                        name="nights"
-                        label="Nights"
-                        variant="standard"
-                        onBlur={handleInputChange}
-                    />
-                    <TextField
-                        fullWidth
-                        required
-                        type="date"
-                        id="date"
-                        name="check_in"
-                        label="check-in"
-                        variant="standard"
-                        defaultValue={selectedDate}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        onChange={handleDateChange}
-                        onBlur={handleInputChange}
-                    />
-                    <Grid item xs={8}>
-                        <Button type="submit" variant="contained">
+                    <Typography component="h1" variant="h5">
+                        Check In
+                    </Typography>
+                    <Box
+                        noValidate
+                        autoComplete="off"
+                        onSubmit={handleFormSubmit}
+                        sx={{ mt: 3 }}
+                    >
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField
+                                    autoComplete="no"
+                                    autoFocus
+                                    fullWidth
+                                    required
+                                    id="name"
+                                    name="name"
+                                    label="Name"
+                                    onBlur={handleInputChange}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    fullWidth
+                                    required
+                                    autoComplete="no"
+                                    id="balance"
+                                    name="balance"
+                                    label="Balance"
+                                    onBlur={handleInputChange}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    fullWidth
+                                    required
+                                    id="partyNum"
+                                    name="party"
+                                    autoComplete="no"
+                                    label="Number in Party"
+                                    onBlur={handleInputChange}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    fullWidth
+                                    required
+                                    id="nightsNum"
+                                    name="nights"
+                                    label="Nights"
+                                    autoComplete="no"
+                                    onBlur={handleInputChange}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    fullWidth
+                                    required
+                                    type="date"
+                                    id="date"
+                                    name="date"
+                                    autoComplete="no"
+                                    label="check-in"
+                                    defaultValue={selectedDate}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    onChange={handleDateChange}
+                                    onBlur={handleInputChange}
+                                />
+                            </Grid>
+                        </Grid>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            fullWidth
+                            sx={{ mt: 3, mb: 2 }}
+                        >
                             Check-in
                         </Button>
-                    </Grid>
-                </Paper>
-            </Grid>
-        </Grid>
+                    </Box>
+                </Box>
+            </Container>
+        </ThemeProvider>
     );
 };
 

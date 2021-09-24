@@ -4,6 +4,8 @@ import {
     ACTIVE_LOGIN_PAGE,
     GET_ROOM_COUNT,
     CHECK_IN,
+    CURRENT_TAB,
+    MODAL_PROPS
 } from "./actions";
 import { useReducer } from "react";
 
@@ -33,6 +35,17 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 checkedInGuests: [action.checkedInGuests],
+            };
+        case CURRENT_TAB:
+            return {
+                ...state,
+                currentTab: action.currentTab,
+            };
+        case MODAL_PROPS:
+            return {
+                ...state,
+                modalOpen: action.modalOpen,
+                modalProps: action.modalProps,
             };
 
         default:
