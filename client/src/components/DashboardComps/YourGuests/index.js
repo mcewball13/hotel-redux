@@ -18,7 +18,10 @@ const YourGuests = () => {
     const [state, dispatch] = useStoreContext();
     const { modalOpen, checkedInGuests } = state;
     // console.log(`this is data ${JSON.stringify(data.checkedIn[0].guest.name)}`)
-    const { loading, data } = useQuery(QUERY_CURRENT_GUESTS);
+    const { loading, data } = useQuery(QUERY_CURRENT_GUESTS, {
+        fetchPolicy: 'no-cache'
+    });
+    console.log(checkedInGuests)
     
 
     useEffect(() => {
