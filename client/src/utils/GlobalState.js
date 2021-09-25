@@ -8,7 +8,7 @@ const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useUiReducer({
     currentTab: "dashboard",
     roomsAvailable: "",
-    checkedInGuests: [],
+    checkedInGuests: {},
     modalOpen: false,
     modalProps: {
       name: "",

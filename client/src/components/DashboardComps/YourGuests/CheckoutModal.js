@@ -27,19 +27,8 @@ const CheckOutModal = () => {
         <Dialog open={modalOpen} onClose={handleClose}>
             <DialogTitle>Guest Checkout</DialogTitle>
             <DialogContent>
-                <Grid container spacing={2} fullWidth sx={{ mt: 3 }}>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            required
-                            id="room_id"
-                            name="room_id"
-                            label="Room Number"
-                            autoComplete="no"
-                            value={modalProps.room_id}
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
+                <Grid container spacing={2} sx={{ mt: 3 }}>
+                <Grid item xs={12}>
                         <TextField
                             autoComplete="no"
                             autoFocus
@@ -49,6 +38,17 @@ const CheckOutModal = () => {
                             name="name"
                             label="Name"
                             value={modalProps.name}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            required
+                            id="room_id"
+                            name="room_id"
+                            label="Room Number"
+                            autoComplete="no"
+                            value={modalProps.room_id}
                         />
                     </Grid>
                     <Grid item xs={12}>

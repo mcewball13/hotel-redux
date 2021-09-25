@@ -5,12 +5,12 @@ import Typography from "@mui/material/Typography";
 
 const LateCheckout = () => {
     const { loading, data } = useQuery(QUERY_LATE_CHECKOUT);
-    const {lateCheckouts} = data
+    // const {lateCheckouts} = data
 
-    useEffect(() => {
+    // useEffect(() => {
         
-        // query the database at 11:01am to see who hasn't checked out that day
-    }, [lateCheckouts]);
+    //     // query the database at 11:01am to see who hasn't checked out that day
+    // }, [lateCheckouts]);
     return (
         <>
             <Typography gutterBottom variant="h5" component="div">
@@ -23,7 +23,7 @@ const LateCheckout = () => {
                 variant="body2"
                 color="text.secondary"
             >
-                {loading ? <div>Loading...</div> : <h2>{lateCheckouts}</h2>}
+                {/* {loading ? <div>Loading...</div> : <h2>{lateCheckouts}</h2>} */}
             </Typography>
         </>
     );

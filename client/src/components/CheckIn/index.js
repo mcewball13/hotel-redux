@@ -102,6 +102,7 @@ const CheckInForm = () => {
                         Check In
                     </Typography>
                     <Box
+                    component="form"
                         noValidate
                         autoComplete="off"
                         onSubmit={handleFormSubmit}

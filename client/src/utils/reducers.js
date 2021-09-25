@@ -17,7 +17,7 @@ export const reducer = (state, action) => {
         case CHECK_IN:
             return {
                 ...state,
-                checkedInGuests: [action.checkedInGuests],
+                checkedInGuests: action.checkedInGuests,
             };
         case CURRENT_TAB:
             return {
