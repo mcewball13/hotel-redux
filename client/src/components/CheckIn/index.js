@@ -11,12 +11,16 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-
+import { useStoreContext } from "../../utils/GlobalState";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 
 const theme = createTheme();
 
 const CheckInForm = () => {
+    const [state, dispatch] = useStoreContext();
+    const {checkedInGuests} = state;
+
     const [check_in] = useMutation(CHECK_IN_GUEST);
 
     const [formState, setFormState] = useState({
@@ -58,7 +62,7 @@ const CheckInForm = () => {
             console.log(formState);
             const data = await check_in({
                 variables: {
-                    room_id: 3,
+                    room_id: 8,
                     input: {
 
                         name: formState.name,
@@ -69,7 +73,7 @@ const CheckInForm = () => {
                     },
                 },
             });
-            console.log(data);
+            console.log(data.data);
         } catch (err) {
             //console.log("clicked");
             console.error(err);

@@ -154,7 +154,6 @@ const Home = () => {
                         }}
                     >
                         <Toolbar />
-                        {/* <Dashboard /> */}
                         {renderComp(currentTab)}
                     </Box>
                 </Box>
