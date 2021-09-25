@@ -8,7 +8,9 @@ import Typography from "@mui/material/Typography";
 const GuestCount = () => {
     const [state, dispatch] = useStoreContext()
     const {roomsAvailable} = state;
-    const { data: vacancy} = useQuery(QUERY_ROOMS_AVAILABLE);
+    const { data: vacancy} = useQuery(QUERY_ROOMS_AVAILABLE, {
+        fetchPolicy: 'no-cache'
+    });
     console.log(state)
     
     useEffect(() => {

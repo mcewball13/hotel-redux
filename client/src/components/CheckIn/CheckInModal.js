@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useStoreContext } from "../../utils/GlobalState";
-import { MODAL_PROPS } from "../../utils/actions";
+import { MODAL_PROPS, CURRENT_TAB } from "../../utils/actions";
 import { useMutation } from "@apollo/client";
 import { CHECK_IN_GUEST } from "../../utils/mutations";
 
@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 
 const CheckInModal = () => {
     const [state, dispatch] = useStoreContext();
-    const { modalProps, modalOpen } = state;
+    const { modalProps, modalOpen, currentTab } = state;
     const [check_in] = useMutation(CHECK_IN_GUEST);
 
     const [formData, setFormData] = useState({
@@ -70,6 +70,10 @@ const CheckInModal = () => {
             check_in: "",
         });
         handleClose();
+        dispatch({
+            type: CURRENT_TAB,
+            currentTab: 'dashboard'
+        })
     };
 
     const handleClose = () => {
@@ -140,7 +144,7 @@ const CheckInModal = () => {
                         <TextField
                             fullWidth
                             required
-                            type="datetime-local"
+                            type="date"
                             id="date"
                             name="check_in"
                             autoComplete="no"

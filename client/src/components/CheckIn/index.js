@@ -42,6 +42,7 @@ const CheckIn = () => {
         // dispatch()
     }, [dispatch, data]);
 
+    if (loading) return <div>Loading...</div>;
     
     let roomList = data.vacancy;
 
@@ -54,8 +55,6 @@ const CheckIn = () => {
             }
         })
     };
-    
-    if (loading) return <div>Loading...</div>;
 
     // console.log(selectedDate);
     return (

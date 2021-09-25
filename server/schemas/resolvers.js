@@ -11,7 +11,9 @@ const resolvers = {
     //query for all rooms
     rooms: async (parent, args, context) => {
       if(context.employee){
-        return await Room.find();
+        const roomData = await Room.find().populate('check_out');
+        console.log(roomData);
+        return roomData;
       }
       throw new AuthenticationError('Must be logged in');
     },

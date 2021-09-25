@@ -16,16 +16,17 @@ const RoomSchema = new Schema(
   },
   {
     toJSON: {
+      getters: true,
       virtuals: true,
     }
   }
 );
 
-// RoomSchema.virtual("roomsAvailable", () => {
-//   let roomsAvailableCount = 0
-//   this.guests.length > 0 ? null : roomsAvailableCount++ 
-//   return roomsAvailableCount;
-// })
+
+RoomSchema.virtual("check_out", () => {
+  console.log("test");
+  return "5";
+})
 
 const Room = model('Room', RoomSchema);
 
