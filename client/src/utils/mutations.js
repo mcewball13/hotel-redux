@@ -49,7 +49,6 @@ mutation check_in($room_id: Int!, $input: checkinInput!) {
         balance
         party
         nights
-        check_in
       }
     }
   }

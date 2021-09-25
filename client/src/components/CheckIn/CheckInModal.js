@@ -22,7 +22,7 @@ const CheckInModal = () => {
         balance: "",
         party: "",
         nights: "",
-        date: "",
+        check_in: "",
     });
 
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -47,35 +47,27 @@ const CheckInModal = () => {
             event.preventDefault();
             event.stopPropagation();
         }
-        console.log(`This is Form State ${formData}`);
 
         try {
             console.log(formData);
-            const data = await check_in({
+            await check_in({
                 variables: {
                     room_id: modalProps.room_id,
-                    input: {
-                        name: formData.name,
-                        balance: formData.balance,
-                        party: formData.party,
-                        nights: formData.nights,
-                        check_in: formData.date,
-                    },
+                    input: {...formData},
                 },
             });
-            console.log(data);
+            //console.log(data);
         } catch (err) {
             //console.log("clicked");
             console.error(err);
         }
         
-        setSelectedDate(new Date());
         setFormData({
             name: "",
             balance: "",
             party: "",
             nights: "",
-            date: "",
+            check_in: "",
         });
         handleClose();
     };
@@ -150,7 +142,7 @@ const CheckInModal = () => {
                             required
                             type="datetime-local"
                             id="date"
-                            name="date"
+                            name="check_in"
                             autoComplete="no"
                             label="Check-in-Date"
                             defaultValue={selectedDate}
