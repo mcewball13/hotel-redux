@@ -12,7 +12,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const DeleteUserModal = () => {
+const DeleteUserModal = ({refetch}) => {
     const [state, dispatch] = useStoreContext();
     const { modalProps, modalOpen} = state;
     const [removeUser] = useMutation(DELETE_USER);
@@ -35,9 +35,7 @@ const DeleteUserModal = () => {
                     email: modalProps.email,
                 },
             });
-            //console.log(data);
         } catch (err) {
-            //console.log("clicked");
             console.error(err);
         }
         handleClose();
@@ -45,12 +43,13 @@ const DeleteUserModal = () => {
             type: CURRENT_TAB,
             currentTab: "management",
         });
+        refetch()
     };
 
     const handleClose = () => {
         dispatch({
             type: MODAL_PROPS,
-            modalOpen: false,
+            modalOpen: !modalOpen,
             modalProps: {},
         });
     };

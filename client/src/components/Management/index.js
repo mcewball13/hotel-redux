@@ -22,19 +22,13 @@ const Management = () => {
     const [state, dispatch] = useStoreContext();
     const { modalOpen } = state;
 
-    const { loading, data } = useQuery(QUERY_EMPLOYEES);
-    // useEffect(() => {
-    //     if (data) {
-    //         dispatch({
-    //             type: CHECK_IN,
-    //             checkedInGuests: data,
-    //         });
-    //     }
-    //     // dispatch()
-    // }, [dispatch, data]);
+    const { loading, error, data, refetch } = useQuery(QUERY_EMPLOYEES);
+   
 
     if (loading) return <div>Loading...</div>;
     
+
+
     let employeeData = data.employees;
 
     const handleClickOpen = employee => {
@@ -91,7 +85,7 @@ const Management = () => {
                     ))}
                 </TableBody>
             </Table>
-            {modalOpen && <DeleteUserModal/>}
+            {modalOpen && <DeleteUserModal refetch={refetch}/>}
         </Fragment>
     );
 };

@@ -43,7 +43,7 @@ function Nav() {
                     <ListItemIcon>
                         <AssignmentIndIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Management" />
+                    <ListItemText primary="User Management" />
                 </ListItem>
            
 
