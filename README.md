@@ -4,7 +4,7 @@
 This is a simple MERN stack project for the Bussiness Side of a Hotel Booking app. Employees can log in, view and check in or out guests out of their hotel.
 Frontend was built with React Js and Material UI. While back was built with MongoDB and Apollo's GraphQL framework.
 
-You can preview the [page here]("https://pacific-journey-96922.herokuapp.com/")
+You can preview the [page here](https://pacific-journey-96922.herokuapp.com/)
 
 ![img]()
 

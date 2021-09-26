@@ -117,7 +117,7 @@ export default function SignupForm() {
                                     required
                                     fullWidth
                                     id="signup-username"
-                                    label="First Name"
+                                    label="Username"
                                     autoFocus
                                     onChange={handleInputChange}
                                     value={userFormData.username}
