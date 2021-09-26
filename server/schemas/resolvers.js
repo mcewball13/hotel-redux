@@ -53,6 +53,15 @@ const resolvers = {
       }
       throw new AuthenticationError('Must Be Logged in');
     },
+    //query for all employees data
+    employees: async (parent, args, context) => {
+      if(context.employee){
+        const employeeData = await Employee.find()
+        .select("-__v -password");
+          return employeeData;
+      }
+      throw new AuthenticationError('Must Be Logged in');
+    },
     //return any room that is vacant
     vacancy: async (parent, args, context) => {
       if(context.employee){
@@ -73,6 +82,15 @@ const resolvers = {
       const token = signToken(employee);
 
       return { token, employee};
+    },
+    removeUser: async (parent, {email}, context) => {
+      if(context.employee){
+        const roomData = await Employee.findOneAndDelete(
+          {email},
+        )
+        return roomData;
+      }
+      throw new AuthenticationError('Must be logged in');
     },
     //login with excisiting user data
     login: async (parent, { email, password }) => {
