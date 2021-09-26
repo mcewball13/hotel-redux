@@ -3,7 +3,7 @@ import DeleteUserModal from "./DeleteUserModal";
 import { useQuery } from "@apollo/client";
 import { QUERY_EMPLOYEES } from "../../utils/queries";
 import { useStoreContext } from "../../utils/GlobalState";
-import { CHECK_IN, MODAL_PROPS } from "../../utils/actions";
+import { MODAL_PROPS, SIGNUP_MODAL } from "../../utils/actions";
 import { useMutation } from "@apollo/client";
 import Link from '@mui/material/Link'
 import Fab from "@mui/material/Fab";
@@ -19,12 +19,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import SignUpModal from "./SignUpModal";
 
 const theme = createTheme();
 
 const Management = () => {
     const [state, dispatch] = useStoreContext();
-    const { modalOpen } = state;
+    const { modalOpen, signupModal } = state;
 
     const { loading, error, data, refetch } = useQuery(QUERY_EMPLOYEES);
 
@@ -43,6 +44,18 @@ const Management = () => {
         });
     };
 
+    const handleClickSignUp = (employee) => {
+        dispatch({
+            type: SIGNUP_MODAL,
+            signupModal: true,
+            signupProps: {
+                name: employee.username,
+                email: employee.email,
+                password: employee.password,
+            },
+        });
+    };
+
     return (
         <Fragment>
             <Stack
@@ -51,11 +64,11 @@ const Management = () => {
                 alignItems="center"
                 spacing={2}
             >
-                <Link href='signup'>
-                <Fab size='small' color="primary" aria-label="add" sx={{m:3 }}>
+                {/* <Link href='signup'> */}
+                <Fab size='small' color="primary" aria-label="add" sx={{m:3 }} onClick={handleClickSignUp}>
                     <AddIcon />
                 </Fab>
-                </Link>
+                {/* </Link> */}
              
                 
                 <Typography
@@ -102,6 +115,7 @@ const Management = () => {
                 </TableBody>
             </Table>
             {modalOpen && <DeleteUserModal refetch={refetch} />}
+            {signupModal && <SignUpModal refetch={refetch} />}
         </Fragment>
     );
 };

@@ -10,6 +10,12 @@ const StoreProvider = ({ value = [], ...props }) => {
     roomsAvailable: "",
     checkedInGuests: {},
     modalOpen: false,
+    signupModal: false,
+    signupProps: {
+      username: "",
+      email: "",
+      password: ""
+    },
     modalProps: {
       name: "",
       room_id: "",

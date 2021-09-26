@@ -2,7 +2,8 @@ import {
     GET_ROOM_COUNT,
     CHECK_IN,
     CURRENT_TAB,
-    MODAL_PROPS
+    MODAL_PROPS,
+    SIGNUP_MODAL
 } from "./actions";
 import { useReducer } from "react";
 
@@ -29,6 +30,12 @@ export const reducer = (state, action) => {
                 ...state,
                 modalOpen: action.modalOpen,
                 modalProps: action.modalProps,
+            };
+        case SIGNUP_MODAL:
+            return {
+                ...state,
+                signupModal: action.signupModal,
+                signupProps: action.signupProps,
             };
 
         default:

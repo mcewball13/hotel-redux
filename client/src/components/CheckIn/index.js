@@ -32,15 +32,11 @@ const CheckIn = () => {
     const { modalOpen } = state;
     // console.log(`this is data ${JSON.stringify(data.checkedIn[0].guest.name)}`)
     const { loading, data, error, refetch } = useQuery(QUERY_ROOMS_AVAILABLE);
-    // useEffect(() => {
-    //     if (data) {
-    //         dispatch({
-    //             type: CHECK_IN,
-    //             checkedInGuests: data,
-    //         });
-    //     }
-    //     // dispatch()
-    // }, [dispatch, data]);
+    useEffect(() => {
+        if(!modalOpen) {
+            refetch();
+        }
+    }, [modalOpen]);
 
     if (loading) return <div>Loading...</div>;
     

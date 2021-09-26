@@ -114,7 +114,6 @@ const CheckInModal = ({refetch}) => {
                     <Grid item xs={12}>
                         <TextField
                             autoComplete="no"
-                            autoFocus
                             fullWidth
                             required
                             id="party"
@@ -127,7 +126,6 @@ const CheckInModal = ({refetch}) => {
                     <Grid item xs={12}>
                         <TextField
                             autoComplete="no"
-                            autoFocus
                             fullWidth
                             required
                             id="nights"

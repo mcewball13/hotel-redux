@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useStoreContext } from "../../utils/GlobalState";
-import { MODAL_PROPS, CURRENT_TAB } from "../../utils/actions";
+import { SIGNUP_MODAL, CURRENT_TAB } from "../../utils/actions";
 import { useMutation } from "@apollo/client";
-import { DELETE_USER } from "../../utils/mutations";
+import { ADD_USER } from "../../utils/mutations";
 
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -12,10 +12,21 @@ import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const DeleteUserModal = ({refetch}) => {
+const SignUpModal = ({refetch}) => {
     const [state, dispatch] = useStoreContext();
-    const { modalProps, modalOpen} = state;
-    const [removeUser] = useMutation(DELETE_USER);
+    const { signupModal, signupProps} = state;
+    const [signup] = useMutation(ADD_USER);
+
+    const [formData, setFormData] = useState({
+        username: "",
+        email: "",
+        password: ""
+    });
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({ ...formData, [name]: value });
+    };
 
 
     const handleFormSubmit = async (event) => {
@@ -30,9 +41,9 @@ const DeleteUserModal = ({refetch}) => {
         }
 
         try {
-            await removeUser({
+            await signup({
                 variables: {
-                    email: modalProps.email,
+                    ...formData
                 },
             });
         } catch (err) {
@@ -43,20 +54,20 @@ const DeleteUserModal = ({refetch}) => {
             type: CURRENT_TAB,
             currentTab: "management",
         });
-        refetch()
+        refetch();
     };
 
     const handleClose = () => {
         dispatch({
-            type: MODAL_PROPS,
-            modalOpen: !modalOpen,
-            modalProps: {},
+            type: SIGNUP_MODAL,
+            signupModal: !signupModal,
+            signupProps: {},
         });
     };
 
     return (
-        <Dialog open={modalOpen} onClose={handleClose}>
-            <DialogTitle>Guest Checkout</DialogTitle>
+        <Dialog open={signupModal} onClose={handleClose}>
+            <DialogTitle>Add Employee</DialogTitle>
             <DialogContent>
                 <Grid container spacing={2} fullWidth sx={{ mt: 3 }}>
                     <Grid item xs={12}>
@@ -64,12 +75,12 @@ const DeleteUserModal = ({refetch}) => {
                             fullWidth
                             autoFocus
                             required
-                            disabled
-                            id="name"
-                            name="name"
-                            label="Name"
+                            id="username"
+                            name="username"
+                            label="Username"
                             autoComplete="no"
-                            value={modalProps.name}
+                            value={signupProps.name}
+                            onBlur={handleInputChange}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -80,17 +91,29 @@ const DeleteUserModal = ({refetch}) => {
                             id="email"
                             name="email"
                             label="Email"
-                            value={modalProps.email}
+                            value={signupProps.email}
+                            onBlur={handleInputChange}
+                        />
+                    </Grid><Grid item xs={12}>
+                        <TextField
+                            autoComplete="no"
+                            fullWidth
+                            required
+                            id="password"
+                            name="password"
+                            label="Password"
+                            value={signupProps.password}
+                            onBlur={handleInputChange}
                         />
                     </Grid>
                 </Grid>
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleFormSubmit}>Delete User</Button>
+                <Button onClick={handleFormSubmit}>Add </Button>
             </DialogActions>
         </Dialog>
     );
 };
 
-export default DeleteUserModal;
+export default SignUpModal;
