@@ -2,6 +2,7 @@ import React, { useState} from "react";
 import Nav from "../components/Nav";
 import Dashboard from "../components/DashboardComps";
 import CheckInForm from "../components/CheckIn";
+import Management from "../components/Management";
 import { BrowserRouter as Router} from "react-router-dom";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -84,6 +85,9 @@ const Home = () => {
             //     return <CheckOutForm />;
             case 'dashboard':
                 return <Dashboard />;
+                
+            case 'management':
+                return <Management />;
 
             default:
                 break;

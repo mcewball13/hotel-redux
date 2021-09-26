@@ -5,6 +5,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Link } from "react-router-dom";
 import { useStoreContext } from "../../utils/GlobalState";
@@ -36,6 +37,13 @@ function Nav() {
                         <ArrowForwardOutlinedIcon />
                     </ListItemIcon>
                     <ListItemText primary="Check In" />
+                </ListItem>
+                
+                <ListItem button onClick={() => handleCompChange("management")}>
+                    <ListItemIcon>
+                        <AssignmentIndIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Management" />
                 </ListItem>
            
 

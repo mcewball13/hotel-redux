@@ -8,6 +8,14 @@ export const QUERY_ROOMS_AVAILABLE = gql`
     }
   }
 `;
+export const QUERY_EMPLOYEES = gql`
+  {
+    employees  {
+        username
+        email
+    }
+  }
+`;
 export const QUERY_LATE_CHECKOUT = gql`
     query getLateCheckout($input: Input) {
         lateCheckouts(input: $input) {

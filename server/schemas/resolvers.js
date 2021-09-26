@@ -53,6 +53,15 @@ const resolvers = {
       }
       throw new AuthenticationError('Must Be Logged in');
     },
+    //query for all employees data
+    employees: async (parent, args, context) => {
+      if(context.employee){
+        const employeeData = await Employee.find()
+        .select("-__v -password");
+          return employeeData;
+      }
+      throw new AuthenticationError('Must Be Logged in');
+    },
     //return any room that is vacant
     vacancy: async (parent, args, context) => {
       if(context.employee){
