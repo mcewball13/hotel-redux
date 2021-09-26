@@ -28,7 +28,11 @@ You can preview the [page here](https://pacific-journey-96922.herokuapp.com/)
 This application is covered by the MIT license. 
 
 ## Contributing
-Gustavo Muratalla
+[Mike McEwen](https://github.com/mcewball13)
+
+[Gustavo Muratalla](https://github.com/Teku-Guy)
+
+[Michael Ruiz](https://github.com/Frostquill)
 
 ## Questions
 U can always open a github issues prompt from our github repo<br />
