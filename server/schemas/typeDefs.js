@@ -57,7 +57,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     check_in(room_id: Int!, input: checkinInput!): Room
     check_out(room_id: Int!): Room
-    removeUser(_id: ID!):Employee
+    removeUser(email: String!):Employee
     addRoom(room_id: Int!, description: String!):Room
     delRoom(room_id: Int!):Room
   }
