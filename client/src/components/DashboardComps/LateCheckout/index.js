@@ -6,20 +6,21 @@ import Typography from "@mui/material/Typography";
 import TableCell from "@mui/material/TableCell";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
+import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 
 const LateCheckout = () => {
     const [state] = useStoreContext();
-    const {modalOpen} = state;
+    const { modalOpen } = state;
     const { loading, data, refetch } = useQuery(QUERY_CURRENT_GUESTS, {
-        fetchPolicy: 'no-cache'
+        fetchPolicy: "no-cache",
     });
 
     useEffect(() => {
-        if(!modalOpen) {
-            refetch()
+        if (!modalOpen) {
+            refetch();
         }
-    }, [modalOpen, refetch])
+    }, [modalOpen, refetch]);
 
     if (loading) return <div>Loading...</div>;
     const { checkedIn } = data;
@@ -40,21 +41,23 @@ const LateCheckout = () => {
                 color="text.secondary"
             >
                 <Table size="small">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Room Number</TableCell>
-                        <TableCell>Name</TableCell>
-                    </TableRow>
-                </TableHead>
-                {lateCheckouts.map((room, i) => (
-                    <TableRow key={i}>
-                        <TableCell>{room.room_id}</TableCell>
-                        <TableCell>{room.guest.name}</TableCell>
-                    </TableRow>
-                ))}
-        </Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Room Number</TableCell>
+                            <TableCell>Name</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {lateCheckouts.map((room, i) => (
+                            <TableRow key={i}>
+                                <TableCell>{room.room_id}</TableCell>
+                                <TableCell>{room.guest.name}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
             </Typography>
-            </Fragment>
+        </Fragment>
     );
 };
 export default LateCheckout;

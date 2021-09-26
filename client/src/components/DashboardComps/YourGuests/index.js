@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "@apollo/client";
+import { useQuery} from "@apollo/client";
 import { QUERY_CURRENT_GUESTS } from "../../../utils/queries";
 import { useStoreContext } from "../../../utils/GlobalState";
 import { MODAL_PROPS } from "../../../utils/actions";
@@ -15,29 +15,32 @@ import TableRow from "@mui/material/TableRow";
 import Box from "@mui/material/Box";
 
 const YourGuests = () => {
+
     const [state, dispatch] = useStoreContext();
     const { modalOpen } = state;
     const { loading, data, refetch } = useQuery(QUERY_CURRENT_GUESTS, {
-        fetchPolicy: "no-cache",
+        fetchPolicy: 'no-cache'
     });
-
-    const handleClickOpen = (room) => {
+    
+    const handleClickOpen = room => {
         dispatch({
             type: MODAL_PROPS,
             modalOpen: true,
             modalProps: {
                 room_id: room.room_id,
                 name: room.guest.name,
-                balance: room.guest.balance,
-            },
-        });
+                balance: room.guest.balance
+            }
+        })
     };
-
+    
+    
     if (loading) return <div>Loading...</div>;
-    const guestList = data.checkedIn;
+    const guestList = data.checkedIn
+    
 
     return (
-        <Box sx={{ overflow: "auto" }}>
+        <Box sx={{overflow: "auto"}}>
             <Typography
                 component="h2"
                 variant="h6"
@@ -48,17 +51,15 @@ const YourGuests = () => {
             </Typography>
             <Table size="small">
                 <TableHead>
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>Room Number</TableCell>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Nights</TableCell>
-                            <TableCell>Party</TableCell>
-                            <TableCell>Checked In</TableCell>
-                            <TableCell align="center">Balance</TableCell>
-                            <TableCell></TableCell>
-                        </TableRow>
-                    </TableBody>
+                    <TableRow>
+                        <TableCell>Room Number</TableCell>
+                        <TableCell>Name</TableCell>
+                        <TableCell>Nights</TableCell>
+                        <TableCell>Party</TableCell>
+                        <TableCell>Checked In</TableCell>
+                        <TableCell align="center">Balance</TableCell>
+                        <TableCell></TableCell>
+                    </TableRow>
                 </TableHead>
                 <TableBody>
                     {guestList.map((room, i) => (
@@ -67,9 +68,7 @@ const YourGuests = () => {
                             <TableCell>{room.guest.name}</TableCell>
                             <TableCell>{room.guest.nights}</TableCell>
                             <TableCell>{room.guest.party}</TableCell>
-                            <TableCell>
-                                {dateFormatter(parseInt(room.guest.check_in))}
-                            </TableCell>
+                            <TableCell>{dateFormatter(parseInt(room.guest.check_in))}</TableCell>
 
                             <TableCell align="center">{`$${room.guest.balance}`}</TableCell>
                             <TableCell>
@@ -79,7 +78,9 @@ const YourGuests = () => {
                                     color="primary"
                                     size="small"
                                     style={{ marginLeft: 16 }}
-                                    onClick={(event) => handleClickOpen(room)}
+                                    onClick={(event) =>
+                                        handleClickOpen(room)
+                                    }
                                 >
                                     Check Out
                                 </Button>
@@ -88,7 +89,7 @@ const YourGuests = () => {
                     ))}
                 </TableBody>
             </Table>
-            {modalOpen && <CheckOutModal refetch={refetch} />}
+            {modalOpen && <CheckOutModal refetch={refetch}/>}
         </Box>
     );
 };
