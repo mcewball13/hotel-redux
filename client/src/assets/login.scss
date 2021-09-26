@@ -1,0 +1,73 @@
+$primary: #4395fa;
+$secondary: #f5d473;
+$tertiary: #489fc2;
+$quatrinary: #8f8e7c;
+$light: #e4e4e4;
+$dark: #484848;
+$error: rgb(228, 46, 1);
+$border-radius: 0.5rem;
+
+form {
+  margin: 0 auto;
+  width: 80%;
+}
+input {
+  border-radius: $border-radius;
+  padding:10px;
+}
+
+.login-btn {
+  width: 50%;
+  max-width: 200px;
+  margin: 10px auto 0 auto;
+  padding: 10px;
+}
+
+
+.login-signup-plate {
+    position: relative;
+    margin: 10px;
+    width: 50%;
+    height: 40vh;
+    min-height: 200px;
+    padding: 20px;
+    background-color: $primary;
+    border-radius: $border-radius;
+
+}
+#tabs-wrapper{
+  position: absolute;
+  margin-top:-50px;
+  width: 100%;
+  height: 30px;
+  justify-content: center;
+}
+#login-tab {
+  padding: 0 10px 0 10px;
+  background-color:$primary
+}
+#signup-tab {
+  padding: 0 10px 0 10px;
+  background-color:$light
+}
+#login-comp-tab {
+  padding: 0 10px 0 10px;
+  background-color:$light
+}
+#signup-comp-tab {
+  padding: 0 10px 0 10px;
+  background-color:$primary
+}
+.cursor {
+  cursor: pointer;
+}
+@media screen and (max-width: 980px) {
+  .login-signup-plate {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 760px) {
+  .login-signup-plate {
+    width: 90%;
+  }
+}
