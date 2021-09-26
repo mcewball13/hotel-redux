@@ -82,3 +82,10 @@ export const DELETE_ROOM = gql`
     }
   }
 `;
+export const DELETE_USER = gql`
+  mutation removeUser($email: String!) {
+    removeUser(email: $email){
+      email
+    }
+  }
+`;

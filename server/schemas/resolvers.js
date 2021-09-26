@@ -83,6 +83,15 @@ const resolvers = {
 
       return { token, employee};
     },
+    removeUser: async (parent, {email}, context) => {
+      if(context.employee){
+        const roomData = await Employee.findOneAndDelete(
+          {email},
+        )
+        return roomData;
+      }
+      throw new AuthenticationError('Must be logged in');
+    },
     //login with excisiting user data
     login: async (parent, { email, password }) => {
       const employee = await Employee.findOne({email});

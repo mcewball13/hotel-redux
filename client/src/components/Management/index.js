@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment} from "react";
+import DeleteUserModal from './DeleteUserModal'
 import { useQuery} from "@apollo/client";
 import { QUERY_EMPLOYEES } from "../../utils/queries";
 import { useStoreContext } from "../../utils/GlobalState";
@@ -41,7 +42,8 @@ const Management = () => {
             type: MODAL_PROPS,
             modalOpen: true,
             modalProps: {
-               
+               name: employee.username,
+               email: employee.email,
             }
         })
     };
@@ -76,21 +78,20 @@ const Management = () => {
                                 <Button
                                     id={employee.room_id}
                                     variant="contained"
-                                    color="alert"
                                     size="small"
                                     style={{ marginLeft: 16 }}
                                     onClick={(event) =>
                                         handleClickOpen(employee)
                                     }
                                 >
-                                    Book Now
+                                    Remove Employee
                                 </Button>
                             </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
-            {/* {modalOpen && <CheckInModal/>} */}
+            {modalOpen && <DeleteUserModal/>}
         </Fragment>
     );
 };
