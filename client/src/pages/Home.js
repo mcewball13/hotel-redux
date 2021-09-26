@@ -1,5 +1,6 @@
 import React, { useState} from "react";
 import Nav from "../components/Nav";
+import {capitalizeFirstLetter} from '../utils/helpers'
 import Dashboard from "../components/DashboardComps";
 import CheckInForm from "../components/CheckIn";
 import Management from "../components/Management";
@@ -124,7 +125,7 @@ const Home = () => {
                                 noWrap
                                 sx={{ flexGrow: 1 }}
                             >
-                                Dashboard
+                                {capitalizeFirstLetter(currentTab)}
                             </Typography>
                         </Toolbar>
                     </AppBar>

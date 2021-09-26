@@ -85,7 +85,7 @@ const CheckInModal = ({refetch}) => {
         <Dialog open={modalOpen} onClose={handleClose}>
             <DialogTitle>Guest Checkout</DialogTitle>
             <DialogContent>
-                <Grid container spacing={2} fullWidth sx={{ mt: 3 }}>
+                <Grid container spacing={2} sx={{ mt: 3 }}>
                     <Grid item xs={12}>
                         <TextField
                             fullWidth
