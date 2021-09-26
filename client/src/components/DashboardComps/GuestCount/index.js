@@ -11,11 +11,9 @@ const GuestCount = () => {
     const { data: vacancy} = useQuery(QUERY_ROOMS_AVAILABLE, {
         fetchPolicy: 'no-cache'
     });
-    console.log(state)
     
     useEffect(() => {
         if (vacancy) {
-            console.log(vacancy)
 
             dispatch({
                 type: GET_ROOM_COUNT,

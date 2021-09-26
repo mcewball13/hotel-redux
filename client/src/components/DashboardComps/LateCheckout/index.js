@@ -22,11 +22,9 @@ const LateCheckout = () => {
 
     if (loading) return <div>Loading...</div>;
     const { checkedIn } = data;
-    console.log(checkedIn);
     const lateCheckouts = checkedIn.filter((room) => {
         return parseInt(room.guest.check_out) < Date.now();
     });
-    console.log(lateCheckouts);
 
     return (
         <Fragment>

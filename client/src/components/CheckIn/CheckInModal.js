@@ -32,14 +32,11 @@ const CheckInModal = ({refetch}) => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        //console.log(name, value);
         setFormData({ ...formData, [name]: value });
-        //console.log(formData);
     };
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log("clicked");
 
         // check if form has everything
         const form = event.currentTarget;
@@ -49,16 +46,13 @@ const CheckInModal = ({refetch}) => {
         }
 
         try {
-            console.log(formData);
             await check_in({
                 variables: {
                     room_id: modalProps.room_id,
                     input: {...formData},
                 },
             });
-            //console.log(data);
         } catch (err) {
-            //console.log("clicked");
             console.error(err);
         }
         

@@ -20,7 +20,6 @@ const DeleteUserModal = ({refetch}) => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log("clicked");
 
         // check if form has everything
         const form = event.currentTarget;

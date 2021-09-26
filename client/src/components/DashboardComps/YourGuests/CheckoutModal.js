@@ -34,9 +34,7 @@ const CheckOutModal = ({refetch}) => {
                     room_id: modalProps.room_id,
                 },
             });
-            //console.log(data);
         } catch (err) {
-            //console.log("clicked");
             console.error(err);
         }
         

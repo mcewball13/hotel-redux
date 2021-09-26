@@ -63,8 +63,7 @@ export default function SignupForm() {
             event.stopPropagation();
         }
 
-        console.log(event);
-        console.log(userFormData);
+        
         try {
             const { data } = await addUser({
                 variables: {
@@ -73,7 +72,6 @@ export default function SignupForm() {
                     password: userFormData.password,
                 },
             });
-            console.log(data);
 
             Auth.login(data.addUser.token);
         } catch (err) {

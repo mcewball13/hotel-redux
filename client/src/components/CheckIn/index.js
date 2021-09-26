@@ -17,7 +17,6 @@ import TableRow from "@mui/material/TableRow";
 const CheckIn = () => {
     const [state, dispatch] = useStoreContext();
     const { modalOpen } = state;
-    // console.log(`this is data ${JSON.stringify(data.checkedIn[0].guest.name)}`)
     const { loading, data, refetch } = useQuery(QUERY_ROOMS_AVAILABLE);
     useEffect(() => {
         if(!modalOpen) {
@@ -39,7 +38,6 @@ const CheckIn = () => {
         })
     };
 
-    // console.log(selectedDate);
     return (
         <Fragment>
             <Typography

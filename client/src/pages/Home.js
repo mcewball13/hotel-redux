@@ -76,7 +76,6 @@ const Home = () => {
     };
     
     const { currentTab } = state;
-    console.log(`This is current Tab ${currentTab}`)
 
     const renderComp = () => {
         switch (currentTab) {
