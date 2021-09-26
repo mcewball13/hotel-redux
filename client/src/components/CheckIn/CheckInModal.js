@@ -12,7 +12,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const CheckInModal = () => {
+const CheckInModal = ({refetch}) => {
     const [state, dispatch] = useStoreContext();
     const { modalProps, modalOpen, currentTab } = state;
     const [check_in] = useMutation(CHECK_IN_GUEST);
@@ -70,10 +70,7 @@ const CheckInModal = () => {
             check_in: "",
         });
         handleClose();
-        dispatch({
-            type: CURRENT_TAB,
-            currentTab: 'dashboard'
-        })
+        refetch()
     };
 
     const handleClose = () => {

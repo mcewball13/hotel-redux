@@ -31,16 +31,16 @@ const CheckIn = () => {
     const [state, dispatch] = useStoreContext();
     const { modalOpen } = state;
     // console.log(`this is data ${JSON.stringify(data.checkedIn[0].guest.name)}`)
-    const { loading, data } = useQuery(QUERY_ROOMS_AVAILABLE);
-    useEffect(() => {
-        if (data) {
-            dispatch({
-                type: CHECK_IN,
-                checkedInGuests: data,
-            });
-        }
-        // dispatch()
-    }, [dispatch, data]);
+    const { loading, data, error, refetch } = useQuery(QUERY_ROOMS_AVAILABLE);
+    // useEffect(() => {
+    //     if (data) {
+    //         dispatch({
+    //             type: CHECK_IN,
+    //             checkedInGuests: data,
+    //         });
+    //     }
+    //     // dispatch()
+    // }, [dispatch, data]);
 
     if (loading) return <div>Loading...</div>;
     
@@ -99,7 +99,7 @@ const CheckIn = () => {
                     ))}
                 </TableBody>
             </Table>
-            {modalOpen && <CheckInModal/>}
+            {modalOpen && <CheckInModal refetch={refetch}/>}
         </Fragment>
     );
 };
