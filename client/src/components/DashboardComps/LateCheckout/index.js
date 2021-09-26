@@ -4,6 +4,7 @@ import { QUERY_CURRENT_GUESTS } from "../../../utils/queries";
 import { useStoreContext } from "../../../utils/GlobalState";
 import Typography from "@mui/material/Typography";
 import TableCell from "@mui/material/TableCell";
+import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
@@ -38,6 +39,7 @@ const LateCheckout = () => {
                 variant="body2"
                 color="text.secondary"
             >
+                <Table size="small">
                 <TableHead>
                     <TableRow>
                         <TableCell>Room Number</TableCell>
@@ -50,8 +52,9 @@ const LateCheckout = () => {
                         <TableCell>{room.guest.name}</TableCell>
                     </TableRow>
                 ))}
+        </Table>
             </Typography>
-        </Fragment>
+            </Fragment>
     );
 };
 export default LateCheckout;
