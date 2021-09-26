@@ -1,8 +1,8 @@
-import React, { useEffect, Fragment} from "react";
+import React from "react";
 import { useQuery} from "@apollo/client";
 import { QUERY_CURRENT_GUESTS } from "../../../utils/queries";
 import { useStoreContext } from "../../../utils/GlobalState";
-import { CHECK_IN, MODAL_PROPS } from "../../../utils/actions";
+import { MODAL_PROPS } from "../../../utils/actions";
 import dateFormatter from "../../../utils/dateFormat";
 import CheckOutModal from "./CheckoutModal";
 import Button from "@mui/material/Button";
@@ -17,24 +17,10 @@ import Box from "@mui/material/Box";
 const YourGuests = () => {
 
     const [state, dispatch] = useStoreContext();
-    const { modalOpen, checkedInGuests } = state;
-    // console.log(`this is data ${JSON.stringify(data.checkedIn[0].guest.name)}`)
-    const { loading, data, error, refetch } = useQuery(QUERY_CURRENT_GUESTS, {
+    const { modalOpen } = state;
+    const { loading, data, refetch } = useQuery(QUERY_CURRENT_GUESTS, {
         fetchPolicy: 'no-cache'
     });
-    console.log(checkedInGuests)
-    
-
-    // useEffect(() => {
-    //     if (data) {
-    //         dispatch({
-    //             type: CHECK_IN,
-    //             checkedInGuests: data,
-    //         });
-    //     }
-
-    //     // dispatch()
-    // }, [dispatch, data]);
     
     const handleClickOpen = room => {
         dispatch({

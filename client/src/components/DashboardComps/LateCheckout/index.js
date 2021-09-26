@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_CURRENT_GUESTS } from "../../../utils/queries";
 import { useStoreContext } from "../../../utils/GlobalState";
@@ -8,9 +8,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
 const LateCheckout = () => {
-    const [state, dispatch] = useStoreContext();
+    const [state] = useStoreContext();
     const {modalOpen} = state;
-    const { loading, data, error, refetch } = useQuery(QUERY_CURRENT_GUESTS, {
+    const { loading, data, refetch } = useQuery(QUERY_CURRENT_GUESTS, {
         fetchPolicy: 'no-cache'
     });
 
@@ -18,7 +18,7 @@ const LateCheckout = () => {
         if(!modalOpen) {
             refetch()
         }
-    }, [modalOpen])
+    }, [modalOpen, refetch])
 
     if (loading) return <div>Loading...</div>;
     const { checkedIn } = data;
@@ -29,7 +29,7 @@ const LateCheckout = () => {
     console.log(lateCheckouts);
 
     return (
-        <>
+        <Fragment>
             <Typography gutterBottom variant="h5" component="div">
                 Late Checkouts:
             </Typography>
@@ -53,7 +53,7 @@ const LateCheckout = () => {
                     </TableRow>
                 ))}
             </Typography>
-        </>
+        </Fragment>
     );
 };
 export default LateCheckout;

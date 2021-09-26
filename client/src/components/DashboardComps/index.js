@@ -30,62 +30,61 @@ function Copyright(props) {
 
 
 const Dashboard = () => (
-
-<Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-                                <Grid container spacing={3}>
-                                    {/* Guest Count */}
-                                    <Grid item xs={12} md={4} lg={3}>
-                                        <Paper
-                                            sx={{
-                                                p: 2,
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                height: 240,
-                                            }}
-                                        >
-                                            <GuestCount />{" "}
-                                        </Paper>
-                                    </Grid>
-                                    {/* Late Check Outs */}
-                                    <Grid item xs={12} md={4} lg={6}>
-                                        <Paper
-                                            sx={{
-                                                p: 2,
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                height: 240,
-                                            }}
-                                        >
-                                            <LateCheckout />
-                                        </Paper>
-                                    </Grid>
-                                    <Grid item xs={12} md={4} lg={3}>
-                                        <Paper
-                                            sx={{
-                                                p: 2,
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                height: 240,
-                                            }}
-                                        >
-                                            <CurrentDateTime />
-                                        </Paper>
-                                    </Grid>
-                                    {/* Recent Orders */}
-                                    <Grid item xs={12}>
-                                        <Paper
-                                            sx={{
-                                                p: 2,
-                                                display: "flex",
-                                                flexDirection: "column",
-                                            }}
-                                        >
-                                            <YourGuests />
-                                        </Paper>
-                                    </Grid>
-                                </Grid>
-                                <Copyright sx={{ pt: 4 }} />
-                            </Container>
+    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+        <Grid container spacing={3}>
+            {/* Guest Count */}
+            <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                    sx={{
+                        p: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                        height: 240,
+                    }}
+                >
+                    <GuestCount />{" "}
+                </Paper>
+            </Grid>
+            {/* Late Check Outs */}
+            <Grid item xs={12} md={4} lg={6}>
+                <Paper
+                    sx={{
+                        p: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                        height: 240,
+                    }}
+                >
+                    <LateCheckout />
+                </Paper>
+            </Grid>
+            <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                    sx={{
+                        p: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                        height: 240,
+                    }}
+                >
+                    <CurrentDateTime />
+                </Paper>
+            </Grid>
+            {/* Recent Orders */}
+            <Grid item xs={12}>
+                <Paper
+                    sx={{
+                        p: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                    }}
+                >
+                    <YourGuests />
+                </Paper>
+            </Grid>
+        </Grid>
+        <Copyright sx={{ pt: 4 }} />
+    </Container>
 )
 
 export default Dashboard;

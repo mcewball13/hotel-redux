@@ -81,17 +81,6 @@ module.exports = (
     hour = 12;
   }
 
-  const minutes =  dateObj.getMinutes() === 0 ? "00" : dateObj.getMinutes();
-
-  // set `am` or `pm`
-  let periodOfDay;
-
-  if (dateObj.getHours() >= 12) {
-    periodOfDay = 'pm';
-  } else {
-    periodOfDay = 'am';
-  }
-
   const formattedTimeStamp = `${formattedMonth} ${dayOfMonth}, ${year}`;
 
   return formattedTimeStamp;

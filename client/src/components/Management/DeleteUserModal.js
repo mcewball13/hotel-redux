@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useStoreContext } from "../../utils/GlobalState";
 import { MODAL_PROPS, CURRENT_TAB } from "../../utils/actions";
 import { useMutation } from "@apollo/client";

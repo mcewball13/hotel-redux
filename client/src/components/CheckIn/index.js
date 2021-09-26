@@ -1,19 +1,11 @@
 import "date-fns";
-import React, { useState, useEffect, Fragment} from "react";
+import React, { useEffect, Fragment} from "react";
 import { useQuery} from "@apollo/client";
 import { QUERY_ROOMS_AVAILABLE } from "../../utils/queries";
 import { useStoreContext } from "../../utils/GlobalState";
-import { CHECK_IN, MODAL_PROPS } from "../../utils/actions";
-import CssBaseline from "@mui/material/CssBaseline";
-import { useMutation } from "@apollo/client";
-import { CHECK_IN_GUEST } from "../../utils/mutations";
+import { MODAL_PROPS } from "../../utils/actions";
 import CheckInModal from "./CheckInModal";
 
-import Container from "@mui/material/Container";
-
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Table from "@mui/material/Table";
@@ -22,21 +14,16 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-
-const theme = createTheme();
-
 const CheckIn = () => {
     const [state, dispatch] = useStoreContext();
     const { modalOpen } = state;
     // console.log(`this is data ${JSON.stringify(data.checkedIn[0].guest.name)}`)
-    const { loading, data, error, refetch } = useQuery(QUERY_ROOMS_AVAILABLE);
+    const { loading, data, refetch } = useQuery(QUERY_ROOMS_AVAILABLE);
     useEffect(() => {
         if(!modalOpen) {
             refetch();
         }
-    }, [modalOpen]);
+    }, [modalOpen, refetch]);
 
     if (loading) return <div>Loading...</div>;
     

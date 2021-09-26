@@ -1,15 +1,14 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 import DeleteUserModal from "./DeleteUserModal";
 import { useQuery } from "@apollo/client";
 import { QUERY_EMPLOYEES } from "../../utils/queries";
 import { useStoreContext } from "../../utils/GlobalState";
 import { MODAL_PROPS, SIGNUP_MODAL } from "../../utils/actions";
-import { useMutation } from "@apollo/client";
-import Link from '@mui/material/Link'
+import SignUpModal from "./SignUpModal";
+
 import Fab from "@mui/material/Fab";
 import Stack from "@mui/material/Stack";
 import AddIcon from "@mui/icons-material/Add";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Table from "@mui/material/Table";
@@ -18,16 +17,11 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import SignUpModal from "./SignUpModal";
-
-const theme = createTheme();
-
 const Management = () => {
     const [state, dispatch] = useStoreContext();
     const { modalOpen, signupModal } = state;
 
-    const { loading, error, data, refetch } = useQuery(QUERY_EMPLOYEES);
+    const { loading, data, refetch } = useQuery(QUERY_EMPLOYEES);
 
     if (loading) return <div>Loading...</div>;
 
