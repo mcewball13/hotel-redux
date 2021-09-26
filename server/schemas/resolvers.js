@@ -23,9 +23,9 @@ const resolvers = {
       // if(context.employee){
         const roomData = await Room.find();
 
-        const vacantRoom = roomData.filter(room => room.guest);
+        const checkedInRoom = roomData.filter(room => room.guest);
 
-        return vacantRoom;
+        return checkedInRoom;
       // }
       throw new AuthenticationError('Must be logged in');
     },

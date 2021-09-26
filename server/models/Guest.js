@@ -15,8 +15,8 @@ const GuestSchema = new Schema(
     },
     check_in: {
       type: Date,
-      default: new Date,
-      get: time => dateFormat(time)
+      default: Date.now(),
+      // get: time => dateFormat(time)
     },
     // check_out: {
     //   type: Date,
@@ -35,9 +35,8 @@ const GuestSchema = new Schema(
   }
 );
 
-GuestSchema.virtual("check_out", () => {
-  console.log("test")
-  return "5";
+GuestSchema.virtual("check_out").get(function() {
+  return this.check_in.setDate(this.check_in.getDate() + this.nights)
 });
 
 // const Room = model('Room', RoomSchema);

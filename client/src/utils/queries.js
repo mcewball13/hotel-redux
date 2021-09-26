@@ -33,6 +33,7 @@ export const QUERY_CURRENT_GUESTS = gql`
                 nights
                 check_in
                 balance
+                check_out
             }
         }
     }

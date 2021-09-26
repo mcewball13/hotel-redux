@@ -3,6 +3,7 @@ import { useQuery} from "@apollo/client";
 import { QUERY_CURRENT_GUESTS } from "../../../utils/queries";
 import { useStoreContext } from "../../../utils/GlobalState";
 import { CHECK_IN, MODAL_PROPS } from "../../../utils/actions";
+import dateFormatter from "../../../utils/dateFormat";
 import CheckOutModal from "./CheckoutModal";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -24,16 +25,16 @@ const YourGuests = () => {
     console.log(checkedInGuests)
     
 
-    useEffect(() => {
-        if (data) {
-            dispatch({
-                type: CHECK_IN,
-                checkedInGuests: data,
-            });
-        }
+    // useEffect(() => {
+    //     if (data) {
+    //         dispatch({
+    //             type: CHECK_IN,
+    //             checkedInGuests: data,
+    //         });
+    //     }
 
-        // dispatch()
-    }, [dispatch, data]);
+    //     // dispatch()
+    // }, [dispatch, data]);
     
     const handleClickOpen = room => {
         dispatch({
@@ -81,7 +82,7 @@ const YourGuests = () => {
                             <TableCell>{room.guest.name}</TableCell>
                             <TableCell>{room.guest.nights}</TableCell>
                             <TableCell>{room.guest.party}</TableCell>
-                            <TableCell>{room.guest.check_in}</TableCell>
+                            <TableCell>{dateFormatter(parseInt(room.guest.check_in))}</TableCell>
 
                             <TableCell align="center">{`$${room.guest.balance}`}</TableCell>
                             <TableCell>
