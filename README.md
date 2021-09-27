@@ -6,7 +6,7 @@ Frontend was built with React Js and Material UI. While back was built with Mong
 
 Demo Link [here](https://pacific-journey-96922.herokuapp.com/)
 
-![img](./src/../client/src/assets/preview-img.jpg)
+![img](./client/src/assets/preview-img.jpg)
 
 
 ## Table of Contents
