@@ -6,7 +6,7 @@ Frontend was built with React Js and Material UI. While back was built with Mong
 
 Demo Link [here](https://pacific-journey-96922.herokuapp.com/)
 
-![img]()
+![img](./client/src/assets/preview-img.jpg)
 
 
 ## Table of Contents
@@ -38,4 +38,4 @@ This application is covered by the MIT license.
 Head over to [Github Issue](https://github.com/mcewball13/hotel-redux/issues) and open a new issue. We try our best to resolve all errors or questions
 
 
-Or Message us on [:octocat:](https://github.com/mcewball13/hotel-redux/#contributing)
+Or Message us on [:octocat:](#contributing)

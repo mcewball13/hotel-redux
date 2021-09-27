@@ -7,20 +7,28 @@ import Typography from "@mui/material/Typography";
 
 const GuestCount = () => {
     const [state, dispatch] = useStoreContext()
-    const {roomsAvailable} = state;
-    const { data: vacancy} = useQuery(QUERY_ROOMS_AVAILABLE, {
-        fetchPolicy: 'no-cache'
-    });
-    
-    useEffect(() => {
-        if (vacancy) {
+    const {roomsAvailable, modalOpen} = state;
 
+    const { loading, data, refetch} = useQuery(QUERY_ROOMS_AVAILABLE)
+    
+
+    useEffect(() => {
+        if (data) {
             dispatch({
                 type: GET_ROOM_COUNT,
-                roomsAvailable: vacancy.vacancy.length
+                roomsAvailable: data.vacancy.length
             })
         }
-    }, [vacancy, dispatch]);
+        if(!modalOpen) {
+            refetch()
+        }
+        
+        
+    }, [ modalOpen, dispatch, refetch, data])
+    if (loading) return <div>Loading...</div>
+
+    
+   
 
     return (
         <>
